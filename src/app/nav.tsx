@@ -11,6 +11,7 @@ function Nav() {
           className="image w-32"
           src={Logo}
           alt="Logo for sportsbook odds comparer tool"
+          priority={true}
         />
       </div>
       <div className="flex gap-4 justify-center p-3">
@@ -20,7 +21,7 @@ function Nav() {
         {/* <Link href="/odds/mma">MMA</Link> */}
         <Link href="/odds/icehockey_nhl">NHL</Link>
 
-        <Link href="/odds/soccer">Soccer</Link>
+        {/* <Link href="odds/soccer">Soccer</Link> */}
       </div>
     </nav>
   );

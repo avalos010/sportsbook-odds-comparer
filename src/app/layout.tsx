@@ -1,4 +1,4 @@
-import Nav from "@/app/nav";
+import Nav from "./nav";
 import "./globals.css";
 
 export const metadata = {
