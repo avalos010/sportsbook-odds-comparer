@@ -3,7 +3,7 @@ import OddsMenu from "./OddsMenu";
 import OddsTable from "./OddsTable";
 import { ReactNode } from "react";
 
-function OddsContainer({ league, selectedOdds, children }: OddsContainerProps) {
+function OddsContainer({ league, children }: OddsContainerProps) {
   return (
     <div className="bg-slate-200">
       <h2 className="text-4xl text-center">{league.toUpperCase()}</h2>
@@ -18,5 +18,4 @@ export default OddsContainer;
 interface OddsContainerProps {
   league: string;
   children: ReactNode | ReactNode[];
-  selectedOdds: "Moneyline" | "Spread" | "Points";
 }

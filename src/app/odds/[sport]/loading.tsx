@@ -1,5 +1,4 @@
-function Loading() {
-  return <p>Loading...</p>;
-}
+import LoadingSpinner from "@/components/LoadingSpinner";
 
-export default Loading;
+const spinner = () => <LoadingSpinner />;
+export default spinner;

@@ -12,7 +12,7 @@ const Page = async ({ params }: { params: Params }) => {
   if (!data?.odds) return <div>no odds</div>;
 
   return (
-    <OddsContainer league={league} selectedOdds="Spread">
+    <OddsContainer league={league}>
       {data?.odds.map((odd) => (
         <div key={odd.id}>
           <OddsTable

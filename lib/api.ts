@@ -99,19 +99,19 @@ export async function getSpreadOdds(sport = "upcoming") {
 export async function getPointOdds(sport = "upcoming") {
   try {
     const odds = await getOdds(sport);
-    const data: { title: string; outcomes: Outcome[] }[] = [];
+    let data: { title: string; outcomes: Outcome[] }[] = [];
     odds?.forEach((odd) => {
       const { bookmakers } = odd;
       return bookmakers.forEach((bookmaker) => {
         const { title } = bookmaker;
         return bookmaker.markets.forEach((market) => {
           if (market.key === "totals") {
-            data.push({ title, outcomes: market.outcomes });
+            data = [...data, { title, outcomes: market.outcomes }];
           }
         });
       });
     });
-    return { odds, points: data };
+    return { odds, totals: data };
   } catch (error) {
     console.error(error);
   }
