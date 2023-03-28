@@ -1,20 +1,29 @@
 import { Params } from "next/dist/shared/lib/router/utils/route-matcher";
-import { getOdds } from "../../../../lib/api";
+import { Outcome, getMoneyLineOdds } from "../../../../lib/api";
+import OddsContainer from "@/components/OddsContainer";
 import OddsTable from "@/components/OddsTable";
+import MoneyLine from "@/components/Moneyline";
 
 const Page = async ({ params }: { params: Params }) => {
   const { sport } = params;
   const league = sport.split("_")[1];
-  const odds = await getOdds(sport);
+  const data = await getMoneyLineOdds(sport);
 
-  if (!odds) return <div>no odds</div>;
+  if (!data?.odds) return <div>no odds</div>;
+
   return (
-    <div className="bg-slate-200">
-      <h2 className="text-4xl text-center">{league.toUpperCase()}</h2>
-      {odds.map((odd) => (
-        <OddsTable key={odd.id} oddsItem={odd} />
+    <OddsContainer league={league} selectedOdds="Moneyline">
+      {data?.odds.map((odd) => (
+        <div key={odd.id}>
+          <OddsTable
+            key={odd.id}
+            oddsItem={odd}
+            away={<MoneyLine data={data.moneyline} team={odd.away_team} />}
+            home={<MoneyLine data={data.moneyline} team={odd.home_team} />}
+          />
+        </div>
       ))}
-    </div>
+    </OddsContainer>
   );
 };
 

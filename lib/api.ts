@@ -1,10 +1,14 @@
 const baseURL = "https://api.the-odds-api.com";
 const apiKey = process.env.NEXT_PUBLIC_API_ODDS_KEY;
 
+export interface Outcome {
+  name: string;
+  price: number;
+}
 export interface Market {
   key: string;
   last_update: string;
-  outcomes: [{ name: string; price: number }];
+  outcomes: Outcome[];
 }
 
 export interface Bookmaker {
@@ -43,6 +47,28 @@ export async function getInSeasonSports() {
     const res = await fetch(`${baseURL}/v4/sports/?apiKey=${apiKey}`);
     const data = await res.json();
     return data;
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+export async function getMoneyLineOdds(sport = "upcoming") {
+  try {
+    const odds = await getOdds(sport);
+    const data: { title: string; outcomes: Outcome[] }[] = [];
+    odds?.forEach((odd) => {
+      const { bookmakers } = odd;
+      return bookmakers.forEach((bookmaker) => {
+        const { title } = bookmaker;
+        return bookmaker.markets.forEach((market) => {
+          if (market.key === "h2h") {
+            data.push({ title, outcomes: market.outcomes });
+          }
+        });
+      });
+    });
+
+    return { odds, moneyline: data };
   } catch (error) {
     console.error(error);
   }
