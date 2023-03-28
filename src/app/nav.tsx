@@ -15,13 +15,12 @@ function Nav() {
         />
       </div>
       <div className="flex gap-4 justify-center p-3">
+        <Link href="/">UPCOMING</Link>
+
         <Link href="/odds/basketball_nba">NBA</Link>
         <Link href="/odds/baseball_mlb">MLB</Link>
         <Link href="/odds/americanfootball_xfl">XFL</Link>
-        {/* <Link href="/odds/mma">MMA</Link> */}
         <Link href="/odds/icehockey_nhl">NHL</Link>
-
-        {/* <Link href="odds/soccer">Soccer</Link> */}
       </div>
     </nav>
   );

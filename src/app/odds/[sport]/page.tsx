@@ -9,8 +9,8 @@ const Page = async ({ params }: { params: Params }) => {
 
   if (!odds) return <div>no odds</div>;
   return (
-    <div>
-      {league}
+    <div className="bg-slate-200">
+      <h2 className="text-4xl text-center">{league.toUpperCase()}</h2>
       {odds.map((odd) => (
         <OddsTable key={odd.id} oddsItem={odd} />
       ))}

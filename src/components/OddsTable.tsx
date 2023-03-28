@@ -40,14 +40,14 @@ function OddsTable({ oddsItem }: OddsTableProps) {
 
   const OddsComponent = ({ team }: { team: string }) => {
     return (
-      <div className="flex flex-row justify-around">
+      <div className="flex flex-row justify-around p-6 bg-white flex-wrap">
         {moneyLine.map((line) => {
           return line.outcomes.map((outcome, id) => {
             if (outcome.name === team) {
               return (
                 <div
                   key={`${outcome}${id}`}
-                  className="flex flex-col items-center"
+                  className="flex flex-col items-center p-3"
                 >
                   <span>
                     {outcome.price > 0 ? "+" + outcome.price : outcome.price}
@@ -64,6 +64,9 @@ function OddsTable({ oddsItem }: OddsTableProps) {
 
   return (
     <div className="m-5 flex flex-col shadow-lg">
+      <h3 className="text-3xl">
+        {home_team} vs {away_team}
+      </h3>
       <div className="p-3">
         <span>{home_team}</span>
         <OddsComponent team={home_team} />

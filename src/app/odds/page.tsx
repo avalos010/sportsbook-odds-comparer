@@ -10,7 +10,8 @@ async function Odds() {
   }
 
   return (
-    <div>
+    <div className="bg-slate-200">
+      <h2 className="text-center text-4xl">Upcoming</h2>
       {odds.map((odd) => (
         <OddsTable key={odd.id} oddsItem={odd} />
       ))}
