@@ -4,6 +4,7 @@ const apiKey = process.env.NEXT_PUBLIC_API_ODDS_KEY;
 export interface Outcome {
   name: string;
   price: number;
+  point?: number;
 }
 export interface Market {
   key: string;
@@ -69,6 +70,48 @@ export async function getMoneyLineOdds(sport = "upcoming") {
     });
 
     return { odds, moneyline: data };
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+export async function getSpreadOdds(sport = "upcoming") {
+  try {
+    const odds = await getOdds(sport);
+    const data: { title: string; outcomes: Outcome[] }[] = [];
+    odds?.forEach((odd) => {
+      const { bookmakers } = odd;
+      return bookmakers.forEach((bookmaker) => {
+        const { title } = bookmaker;
+        return bookmaker.markets.forEach((market) => {
+          if (market.key === "spreads") {
+            data.push({ title, outcomes: market.outcomes });
+          }
+        });
+      });
+    });
+    return { odds, spread: data };
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+export async function getPointOdds(sport = "upcoming") {
+  try {
+    const odds = await getOdds(sport);
+    const data: { title: string; outcomes: Outcome[] }[] = [];
+    odds?.forEach((odd) => {
+      const { bookmakers } = odd;
+      return bookmakers.forEach((bookmaker) => {
+        const { title } = bookmaker;
+        return bookmaker.markets.forEach((market) => {
+          if (market.key === "totals") {
+            data.push({ title, outcomes: market.outcomes });
+          }
+        });
+      });
+    });
+    return { odds, points: data };
   } catch (error) {
     console.error(error);
   }

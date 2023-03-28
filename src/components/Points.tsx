@@ -1,6 +1,6 @@
 import { Outcome } from "../../lib/api";
 
-const Spread = ({ team, data }: SpreadProps) => {
+const Points = ({ team, data }: PointsProps) => {
   return (
     <>
       {data.map((line) => {
@@ -29,9 +29,9 @@ const Spread = ({ team, data }: SpreadProps) => {
   );
 };
 
-export default Spread;
+export default Points;
 
-interface SpreadProps {
+interface PointsProps {
   team: string;
   data: { title: string; outcomes: Outcome[] }[];
 }
