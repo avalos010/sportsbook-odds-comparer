@@ -56,20 +56,11 @@ export async function getInSeasonSports() {
 export async function getMoneyLineOdds(sport = "upcoming") {
   try {
     const odds = await getOdds(sport);
-    const data: { title: string; outcomes: Outcome[] }[] = [];
-    odds?.forEach((odd) => {
-      const { bookmakers } = odd;
-      return bookmakers.forEach((bookmaker) => {
-        const { title } = bookmaker;
-        return bookmaker.markets.forEach((market) => {
-          if (market.key === "h2h") {
-            data.push({ title, outcomes: market.outcomes });
-          }
-        });
-      });
-    });
-
-    return { odds, moneyline: data };
+    if (odds) {
+      const moneylineOdds = filterOdds("h2h", odds);
+      return { odds, moneyline: moneylineOdds };
+    }
+    return { odds: [], moneyline: [] };
   } catch (error) {
     console.error(error);
   }
@@ -78,19 +69,11 @@ export async function getMoneyLineOdds(sport = "upcoming") {
 export async function getSpreadOdds(sport = "upcoming") {
   try {
     const odds = await getOdds(sport);
-    const data: { title: string; outcomes: Outcome[] }[] = [];
-    odds?.forEach((odd) => {
-      const { bookmakers } = odd;
-      return bookmakers.forEach((bookmaker) => {
-        const { title } = bookmaker;
-        return bookmaker.markets.forEach((market) => {
-          if (market.key === "spreads") {
-            data.push({ title, outcomes: market.outcomes });
-          }
-        });
-      });
-    });
-    return { odds, spread: data };
+    if (odds) {
+      const spreadOdds = filterOdds("spreads", odds);
+      return { odds, spread: spreadOdds };
+    }
+    return { odds: [], spread: [] };
   } catch (error) {
     console.error(error);
   }
@@ -99,20 +82,32 @@ export async function getSpreadOdds(sport = "upcoming") {
 export async function getPointOdds(sport = "upcoming") {
   try {
     const odds = await getOdds(sport);
-    let data: { title: string; outcomes: Outcome[] }[] = [];
-    odds?.forEach((odd) => {
-      const { bookmakers } = odd;
-      return bookmakers.forEach((bookmaker) => {
-        const { title } = bookmaker;
-        return bookmaker.markets.forEach((market) => {
-          if (market.key === "totals") {
-            data = [...data, { title, outcomes: market.outcomes }];
-          }
-        });
-      });
-    });
-    return { odds, totals: data };
+    if (odds) {
+      const pointOdds = filterOdds("totals", odds);
+      return { odds, totals: pointOdds };
+    }
+    return { odds: [], totals: [] };
   } catch (error) {
     console.error(error);
   }
+}
+
+type OddsType = "h2h" | "spreads" | "totals";
+
+function filterOdds(type: OddsType, odds: Odds[]) {
+  //filter odds by type
+  let data: { title: string; outcomes: Outcome[] }[] = [];
+  odds?.forEach((odd) => {
+    const { bookmakers } = odd;
+    return bookmakers.forEach((bookmaker) => {
+      const { title } = bookmaker;
+      return bookmaker.markets.forEach((market) => {
+        if (market.key === type) {
+          data = [...data, { title, outcomes: market.outcomes }];
+        }
+      });
+    });
+  });
+
+  return data;
 }
