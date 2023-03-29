@@ -15,7 +15,7 @@ const Moneyline = ({ team, data }: MoneylineProps) => {
                 <span>
                   {outcome.price > 0 ? "+" + outcome.price : outcome.price}
                 </span>
-                <span className="text-cyan-600">Moneyline</span>
+                <span className="text-cyan-700">Moneyline</span>
                 <span>{line.title}</span>
               </div>
             );

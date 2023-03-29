@@ -12,8 +12,8 @@ async function Odds() {
   }
 
   return (
-    <div className="bg-slate-200">
-      <h2 className="text-center text-4xl">Upcoming</h2>
+    <main className="bg-slate-200">
+      <h1 className="text-center text-4xl">Upcoming</h1>
       {data.odds.map((odd) => (
         <div key={odd.id}>
           <OddsTable
@@ -24,7 +24,7 @@ async function Odds() {
           />
         </div>
       ))}
-    </div>
+    </main>
   );
 }
 export default Odds;

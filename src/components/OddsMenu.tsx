@@ -19,7 +19,11 @@ function OddsMenu() {
       {routes.map(({ name, label }) => (
         <Link
           key={name}
-          className={pathname.includes(name) ? "text-cyan-600 font-bold" : ""}
+          className={
+            pathname.includes(name)
+              ? "text-cyan-900 font-bold underline underline-offset-1"
+              : ""
+          }
           href={`${url}/${name}`}
         >
           {label}

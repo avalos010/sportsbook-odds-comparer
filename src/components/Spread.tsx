@@ -15,7 +15,7 @@ const Spread = ({ team, data }: SpreadProps) => {
                 <span>
                   {outcome.price > 0 ? "+" + outcome.price : outcome.price}
                 </span>
-                <span className="text-cyan-600">
+                <span className="text-cyan-700">
                   {outcome.point && outcome.point > 0
                     ? `+${outcome.point}`
                     : outcome.point}

@@ -5,11 +5,11 @@ import { ReactNode } from "react";
 
 function OddsContainer({ league, children }: OddsContainerProps) {
   return (
-    <div className="bg-slate-200">
-      <h2 className="text-4xl text-center">{league.toUpperCase()}</h2>
+    <main className="bg-slate-200">
+      <h1 className="text-4xl text-center">{league.toUpperCase()}</h1>
       <OddsMenu />
       {children}
-    </div>
+    </main>
   );
 }
 

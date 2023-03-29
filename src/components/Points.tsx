@@ -14,7 +14,7 @@ const Points = ({ data }: PointsProps) => {
               <span>
                 {outcome.price > 0 ? "+" + outcome.price : outcome.price}
               </span>
-              <span className="text-cyan-600">
+              <span className="text-cyan-700">
                 {outcome.name} {outcome.point}
               </span>
               <span>{line.title}</span>
