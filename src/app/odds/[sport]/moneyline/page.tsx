@@ -3,7 +3,6 @@ import { getMoneyLineOdds } from "../../../../../lib/api";
 import OddsContainer from "@/components/OddsContainer";
 import OddsTable from "@/components/OddsTable";
 import MoneyLine from "@/components/Moneyline";
-import LoadingSpinner from "@/components/LoadingSpinner";
 
 const Page = async ({ params }: { params: Params }) => {
   const { sport } = params;

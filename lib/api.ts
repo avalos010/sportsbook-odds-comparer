@@ -29,6 +29,15 @@ export interface Odds {
   bookmakers: Bookmaker[];
 }
 
+export interface Sport {
+  key: string;
+  group: string;
+  title: string;
+  description: string;
+  active: boolean;
+  has_outrights: boolean;
+}
+
 export async function getOdds(sport = "upcoming") {
   try {
     const res = await fetch(
