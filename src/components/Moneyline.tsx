@@ -7,7 +7,11 @@ const Moneyline = ({ team, data }: MoneylineProps) => {
         return line.outcomes.map((outcome, id) => {
           if (outcome.name === team) {
             return (
-              <div key={`${outcome}${id}`} className="grid grid-flow-row p-3">
+              <div
+                key={`${outcome}${id}`}
+                className="grid grid-flow-row p-3"
+                data-cy="odds-ml-item"
+              >
                 <span>
                   {outcome.price > 0 ? "+" + outcome.price : outcome.price}
                 </span>

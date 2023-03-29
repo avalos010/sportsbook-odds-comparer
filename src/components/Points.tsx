@@ -6,7 +6,11 @@ const Points = ({ data }: PointsProps) => {
       {data.map((line) => {
         return line.outcomes.map((outcome, id) => {
           return (
-            <div key={`${outcome}${id}`} className="grid grid-flow-row p-3">
+            <div
+              key={`${outcome}${id}`}
+              className="grid grid-flow-row p-3"
+              data-cy="odds-points-item"
+            >
               <span>
                 {outcome.price > 0 ? "+" + outcome.price : outcome.price}
               </span>

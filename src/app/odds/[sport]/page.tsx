@@ -3,7 +3,8 @@ import { redirect } from "next/navigation";
 
 const Page = async ({ params }: { params: Params }) => {
   const { sport } = params;
-  redirect(`odds/${sport}/moneyline`);
+
+  return redirect(`odds/${sport}/moneyline`); //redirect to the moneyline page by default
 };
 
 export default Page;
