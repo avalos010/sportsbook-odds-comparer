@@ -1,4 +1,4 @@
-// "use client";
+"use client";
 import Link from "next/link";
 import Logo from "../../public/next.svg";
 import Image from "next/image";
