@@ -41,7 +41,10 @@ export interface Sport {
 export async function getOdds(sport = "upcoming") {
   try {
     const res = await fetch(
-      `${baseURL}/v4/sports/${sport}/odds/?apiKey=${apiKey}&regions=us&markets=spreads,totals,h2h&oddsFormat=american`
+      `${baseURL}/v4/sports/${sport}/odds/?apiKey=${apiKey}&regions=us&markets=spreads,totals,h2h&oddsFormat=american`,
+      {
+        next: { revalidate: 60 * 60 * 24 }, //we only have 500 requests per day so we only want to revalidate once a day to save on requests while developing. After I will remove this and just use the default revalidate time.
+      }
     );
     const data: Odds[] = await res.json();
     const filtered = data.filter((d) => d.bookmakers.length > 0); //filter out sports that dont have any bookmakers
@@ -54,7 +57,12 @@ export async function getOdds(sport = "upcoming") {
 export async function getInSeasonSports() {
   //get sports that are currently in season
   try {
-    const res = await fetch(`${baseURL}/v4/sports/?apiKey=${apiKey}`);
+    const res = await fetch(
+      `${baseURL}/v4/sports/?apiKey=${apiKey}&markets=spreads,totals,h2h&all=false`,
+      {
+        next: { revalidate: 60 * 60 * 24 }, //we only have 500 requests per day so we only want to revalidate once a day to save on requests while developing. After I will remove this and just use the default revalidate time
+      }
+    );
     const data = await res.json();
     return data;
   } catch (error) {
