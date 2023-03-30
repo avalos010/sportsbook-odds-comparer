@@ -32,6 +32,7 @@ function Nav() {
   return (
     <nav className=" bg-cyan-600 w-full border-b-2 p-4 relative">
       <Bars3Icon
+        data-cy="bars-icon"
         width={56}
         className="text-black absolute top-0 left-3 hover:text-white cursor-pointer"
         onClick={() => setIsOpen(true)}
@@ -59,11 +60,11 @@ function Nav() {
               <Link
                 className="text-white text-1xl"
                 key={sport.key}
-                data-cy={`${sport.group.toLowerCase()}-link`}
+                data-cy={`${sport.title.toLowerCase()}-link`}
                 onClick={() => {
                   setIsOpen(false);
                 }}
-                href={`/odds/${sport.key}`}
+                href={`/odds/${sport.key}/moneyline`}
               >
                 {sport.title}
               </Link>
