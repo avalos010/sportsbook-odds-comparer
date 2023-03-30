@@ -6,7 +6,7 @@ import Spread from "@/components/Spread";
 
 const Page = async ({ params }: { params: Params }) => {
   const { sport } = params;
-  const league = sport.split("_")[1];
+  const league = sport.replaceAll("_", " ").toUpperCase();
   const data = await getSpreadOdds(sport);
 
   return (
