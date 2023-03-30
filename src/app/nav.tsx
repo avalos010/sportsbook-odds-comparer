@@ -9,17 +9,12 @@ import { useState } from "react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/solid";
 
 function Nav() {
-  const {
-    data: sports,
-    isLoading,
-    error,
-  } = useSWR(
+  const { data: sports, error } = useSWR(
     "/sports/api",
     async (url: string) => await fetch(url).then((res) => res.json())
   );
   const [isOpen, setIsOpen] = useState(false);
 
-  if (isLoading) return <LoadingSpinner />;
   if (error) return <div>Error...</div>;
 
   return (
@@ -47,21 +42,22 @@ function Nav() {
             className="text-black w-14 absolute top-3 right-3 hover:text-white cursor-pointer"
             onClick={() => setIsOpen(false)}
           />
-          {sports.map((sport: Sport) => {
-            return (
-              <Link
-                className="text-white text-1xl"
-                key={sport.key}
-                data-cy={`${sport.group.toLowerCase()}-link`}
-                onClick={() => {
-                  setIsOpen(false);
-                }}
-                href={`/odds/${sport.key}`}
-              >
-                {sport.title}
-              </Link>
-            );
-          })}
+          {sports &&
+            sports.map((sport: Sport) => {
+              return (
+                <Link
+                  className="text-white text-1xl"
+                  key={sport.key}
+                  data-cy={`${sport.group.toLowerCase()}-link`}
+                  onClick={() => {
+                    setIsOpen(false);
+                  }}
+                  href={`/odds/${sport.key}`}
+                >
+                  {sport.title}
+                </Link>
+              );
+            })}
         </div>
       </div>
     </nav>

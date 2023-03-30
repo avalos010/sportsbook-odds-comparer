@@ -10,7 +10,7 @@ const Page = async ({ params }: { params: Params }) => {
   const data = await getSpreadOdds(sport);
 
   return (
-    <OddsContainer hasOdds={!!data?.spread} league={league}>
+    <OddsContainer hasOdds={!!data?.spread.length} league={league}>
       {data?.odds.map((odd) => (
         <div key={odd.id}>
           <OddsTable
