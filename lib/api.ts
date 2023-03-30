@@ -43,7 +43,7 @@ export async function getOdds(sport = "upcoming") {
     const res = await fetch(
       `${baseURL}/v4/sports/${sport}/odds/?apiKey=${apiKey}&regions=us&markets=spreads,totals,h2h&oddsFormat=american`,
       {
-        next: { revalidate: 60 * 60 * 24 }, //we only have 500 requests per day so we only want to revalidate once a day to save on requests while developing. After I will remove this and just use the default revalidate time.
+        next: { revalidate: 60 * 60 * 24 }, //we only have 500 requests per month so we only want to revalidate once a day to save on requests while developing. After I will remove this and just use the default revalidate time.
       }
     );
     const data: Odds[] = await res.json();
@@ -60,7 +60,7 @@ export async function getInSeasonSports() {
     const res = await fetch(
       `${baseURL}/v4/sports/?apiKey=${apiKey}&markets=spreads,totals,h2h&all=false`,
       {
-        next: { revalidate: 60 * 60 * 24 }, //we only have 500 requests per day so we only want to revalidate once a day to save on requests while developing. After I will remove this and just use the default revalidate time
+        next: { revalidate: 60 * 60 * 24 }, //we only have 500 requests per month so we only want to revalidate once a day to save on requests while developing. After I will remove this and just use the default revalidate time
       }
     );
     const data = await res.json();
