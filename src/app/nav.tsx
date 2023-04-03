@@ -2,18 +2,18 @@
 import Link from "next/link";
 import Logo from "../../public/next.svg";
 import Image from "next/image";
-import { Sport, getInSeasonSports } from "../../lib/api";
+import { Sport } from "../../lib/api";
 import { useState } from "react";
+import Snackbar from "../components/Snackbar";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/solid";
 import useSWR from "swr";
 
 function Nav() {
   const { data: sports, error } = useSWR(
-    "api/sports",
+    "/api/sports",
     async (url: string) => await fetch(url).then((res) => res.json())
   );
   const [isOpen, setIsOpen] = useState(false);
-  if (error) return <div>Error...</div>;
 
   return (
     <nav className=" bg-cyan-600 w-full border-b-2 p-4 relative">
@@ -31,6 +31,13 @@ function Nav() {
           priority={true}
         />
       </div>
+      {error && (
+        <Snackbar
+          className="absolute top-0 left-0"
+          message={error.message} //"Oops! something went wrong while loading data for the navbar!"
+          type="error"
+        />
+      )}
       <div
         className={`p-3 fixed -top-3 bottom-0 duration-75 transition-opacity ease-in  overflow-y-scroll z-10 bg-black/50 w-full ${
           isOpen ? "left-0 opacity-100" : "-left-full opacity-0"

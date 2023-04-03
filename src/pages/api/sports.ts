@@ -7,7 +7,12 @@ export default async function handler(
 ) {
   if (req.method === "GET") {
     // Handle any GET requests
-    const sports = await getInSeasonSports();
-    res.status(200).json(sports);
+    try {
+      const sports = await getInSeasonSports();
+      res.status(200).json(sports);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: "Something went wrong" });
+    }
   }
 }
