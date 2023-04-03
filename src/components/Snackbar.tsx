@@ -1,3 +1,4 @@
+"use client";
 function Snackbar({ message, type, className }: SnackbarProps) {
   return (
     <div

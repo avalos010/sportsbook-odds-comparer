@@ -1,3 +1,4 @@
+"use client";
 import { Outcome } from "../../lib/api";
 
 const Moneyline = ({ team, data }: MoneylineProps) => {

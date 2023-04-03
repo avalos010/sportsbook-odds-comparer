@@ -1,3 +1,5 @@
+"use client";
+
 function LoadingSpinner({ className }: { className?: string }) {
   return (
     <div

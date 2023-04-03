@@ -1,3 +1,4 @@
+"use client";
 import { Odds } from "../../lib/api";
 import OddsMenu from "./OddsMenu";
 import OddsTable from "./OddsTable";

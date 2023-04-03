@@ -1,3 +1,4 @@
+"use client";
 import { Outcome } from "../../lib/api";
 
 const Spread = ({ team, data }: SpreadProps) => {
