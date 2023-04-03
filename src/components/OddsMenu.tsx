@@ -12,7 +12,7 @@ function OddsMenu() {
     { name: "points", label: "Points" },
   ];
 
-  const url = routes.reduce((acc, cur) => acc.replace(cur.name, ""), pathname);
+  const url = routes.reduce((acc, cur) => acc!.replace(cur.name, ""), pathname);
 
   return (
     <div className="flex flex-row justify-center gap-5 text-lg">
@@ -20,7 +20,7 @@ function OddsMenu() {
         <Link
           key={name}
           className={
-            pathname.includes(name)
+            pathname?.includes(name)
               ? "text-cyan-900 font-bold underline underline-offset-1"
               : ""
           }
