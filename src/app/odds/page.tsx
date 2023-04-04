@@ -1,26 +1,26 @@
 import React from "react";
-import { Outcome, getMoneyLineOdds, getOdds } from "../../../lib/api";
+import { getMoneyLineOdds } from "../../../lib/api";
 import { notFound } from "next/navigation";
 import OddsTable from "@/components/OddsTable";
 import MoneyLine from "@/components/Moneyline";
 
 async function Odds() {
-  const data = await getMoneyLineOdds();
+  const odds = await getMoneyLineOdds();
 
-  if (!data?.odds) {
+  if (!odds) {
     notFound();
   }
 
   return (
     <main className="bg-slate-200">
       <h1 className="text-center text-4xl">Upcoming</h1>
-      {data.odds.map((odd) => (
+      {odds.map((odd) => (
         <div key={odd.id}>
           <OddsTable
             key={odd.id}
             oddsItem={odd}
-            away={<MoneyLine data={data.moneyline} team={odd.away_team} />}
-            home={<MoneyLine data={data.moneyline} team={odd.home_team} />}
+            away={<MoneyLine odds={odds} team={odd.away_team} />}
+            home={<MoneyLine odds={odds} team={odd.home_team} />}
           />
         </div>
       ))}

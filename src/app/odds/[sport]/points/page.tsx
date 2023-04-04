@@ -7,16 +7,16 @@ import Points from "@/components/Points";
 const Page = async ({ params }: { params: Params }) => {
   const { sport } = params;
   const league = sport.replaceAll("_", " ").toUpperCase();
-  const data = await getPointOdds(sport);
+  const odds = await getPointOdds(sport);
 
   return (
-    <OddsContainer hasOdds={!!data?.totals.length} league={league}>
-      {data?.odds.map((odd) => (
+    <OddsContainer hasOdds={!!odds} league={league}>
+      {odds?.map((odd) => (
         <div key={odd.id}>
           <OddsTable
             key={odd.id}
             oddsItem={odd}
-            points={<Points data={data.totals} team={odd.away_team} />}
+            points={<Points odds={odds} team={odd.away_team} />}
           />
         </div>
       ))}

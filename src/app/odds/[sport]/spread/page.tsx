@@ -7,17 +7,17 @@ import Spread from "@/components/Spread";
 const Page = async ({ params }: { params: Params }) => {
   const { sport } = params;
   const league = sport.replaceAll("_", " ").toUpperCase();
-  const data = await getSpreadOdds(sport);
+  const odds = await getSpreadOdds(sport);
 
   return (
-    <OddsContainer hasOdds={!!data?.spread.length} league={league}>
-      {data?.odds.map((odd) => (
+    <OddsContainer hasOdds={!!odds} league={league}>
+      {odds?.map((odd) => (
         <div key={odd.id}>
           <OddsTable
             key={odd.id}
             oddsItem={odd}
-            away={<Spread data={data.spread} team={odd.away_team} />}
-            home={<Spread data={data.spread} team={odd.home_team} />}
+            away={<Spread odds={odds} team={odd.away_team} />}
+            home={<Spread odds={odds} team={odd.home_team} />}
           />
         </div>
       ))}
