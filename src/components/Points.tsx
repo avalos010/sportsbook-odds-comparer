@@ -8,10 +8,10 @@ const Points = ({ odds }: PointsProps) => {
         return odd.bookmakers.map((bookmaker: Bookmaker) => {
           const { title } = bookmaker;
           return bookmaker.markets.map((market: Market) => {
-            return market.outcomes.map((outcome: Outcome) => {
+            return market.outcomes.map((outcome: Outcome, idx) => {
               return (
                 <div
-                  key={`${outcome}${market}`}
+                  key={`${outcome}${market}-${odd.id}-${idx}`}
                   className="grid grid-flow-row p-3"
                   data-cy="odds-points-item"
                 >
