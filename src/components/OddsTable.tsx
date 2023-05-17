@@ -4,6 +4,10 @@ import { Odds } from "../../lib/api";
 
 function OddsTable({ oddsItem, home, away, points }: OddsTableProps) {
   const { away_team, bookmakers, home_team } = oddsItem;
+  const startTime = new Date(oddsItem.commence_time).toLocaleString("en-US", {
+    dateStyle: "medium",
+    timeStyle: "short",
+  });
 
   if (!points) {
     return (
@@ -11,6 +15,7 @@ function OddsTable({ oddsItem, home, away, points }: OddsTableProps) {
         <h2 className="text-3xl">
           {home_team} vs {away_team}
         </h2>
+        <p className="text-cyan-700 text-sm">{startTime}</p>
         <div className="p-3">
           <span>{home_team}</span>
           <div className="flex flex-row justify-around p-6 bg-white flex-wrap">
@@ -31,6 +36,7 @@ function OddsTable({ oddsItem, home, away, points }: OddsTableProps) {
       <h2 className="text-3xl">
         {home_team} vs {away_team}
       </h2>
+      <p className="text-cyan-700 text-sm">{startTime}</p>
       <div className="p-3">
         <div className="flex flex-row justify-around p-6 bg-white flex-wrap">
           {points}
