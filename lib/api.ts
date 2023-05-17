@@ -104,3 +104,24 @@ export async function getPointOdds(sport = "upcoming") {
     console.error(error);
   }
 }
+
+//Playerprops
+
+export async function getPlayerProps(
+  sport: string,
+  eventid: string,
+  markets = "batter_hits"
+) {
+  try {
+    const odds = await fetch(
+      `${baseURL}/v4/sports/${sport}/events/${eventid}/odds/?apiKey=${apiKey}&markets=${markets}`
+    );
+    console.log(odds);
+    if (odds) {
+      return odds;
+    }
+    return [];
+  } catch (error) {
+    console.error(error);
+  }
+}

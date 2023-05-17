@@ -2,6 +2,7 @@
 import { Bookmaker, Market, Odds, Outcome } from "../../lib/api";
 
 const Moneyline = ({ team, odds }: MoneylineProps) => {
+  console.log("odds", odds);
   return (
     <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 lg:grid-cols-8 grid-flow-row">
       {odds.map((odd) => {
