@@ -8,6 +8,9 @@
     "start": "next start",
     "lint": "next lint"
   },
+  "engines": {
+    "yarn": "^3.4.1"
+  },
   "dependencies": {
     "@heroicons/react": "^2.0.18",
     "@netlify/plugin-nextjs": "^4.37.4",
