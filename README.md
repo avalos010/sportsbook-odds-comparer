@@ -5,6 +5,5 @@ Still a work in progress..
  
  Player props coming soon!!
 
-[Live Site](https://chipper-choux-ce3738.netlify.app)
+[Live Site](https://sportsbook-odds-comparer.vercel.app/)
 
-<img src="https://github.com/avalos010/sportsbook-odds-comparer/blob/main/screenshots/screenshot.png" width="350">
