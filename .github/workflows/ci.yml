@@ -1,19 +1,26 @@
 name: ci
-# https://docs.github.com/en/actions/reference/events-that-trigger-workflows
-on: [deployment, deployment_status]
+
+on:
+  deployment_status:
+
 jobs:
   e2e:
-    # only runs this job on successful deploy
     if: github.event_name == 'deployment_status' && github.event.deployment_status.state == 'success'
     runs-on: ubuntu-latest
+
     steps:
       - name: Dump GitHub context
         env:
           GITHUB_CONTEXT: ${{ toJson(github) }}
         run: |
           echo "$GITHUB_CONTEXT"
-      - name: Checkout🛎
+
+      - name: Checkout
         uses: actions/checkout@v3
+
+      - name: Update Lockfile and Install Dependencies
+        run: yarn install --check-files
+
       - name: Run Cypress 🌲
         uses: cypress-io/github-action@v5
         env:
