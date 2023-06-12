@@ -43,3 +43,6 @@ next-env.d.ts
 cypress/videos 
 cypress/screenshots
 cypress/downloads
+
+#yarn 
+.yarn
