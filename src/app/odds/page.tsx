@@ -19,8 +19,8 @@ async function Odds() {
           <OddsTable
             key={odd.id}
             oddsItem={odd}
-            away={<MoneyLine odds={odds} team={odd.away_team} />}
-            home={<MoneyLine odds={odds} team={odd.home_team} />}
+            away={<MoneyLine id={odd.id} odds={odds} team={odd.away_team} />}
+            home={<MoneyLine id={odd.id} odds={odds} team={odd.home_team} />}
           />
         </div>
       ))}
