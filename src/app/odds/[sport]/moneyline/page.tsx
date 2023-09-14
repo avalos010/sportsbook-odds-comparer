@@ -9,6 +9,7 @@ const Page = async ({ params }: { params: Params }) => {
   const league = sport.replaceAll("_", " ").toUpperCase();
   const odds = await getMoneyLineOdds(sport);
 
+  console.log(odds);
   return (
     <OddsContainer hasOdds={!!odds} league={league}>
       {odds?.map((odd) => (
@@ -16,8 +17,8 @@ const Page = async ({ params }: { params: Params }) => {
           <OddsTable
             key={odd.id}
             oddsItem={odd}
-            away={<MoneyLine odds={odds} team={odd.away_team} />}
-            home={<MoneyLine odds={odds} team={odd.home_team} />}
+            away={<MoneyLine id={odd.id} odds={odds} team={odd.away_team} />}
+            home={<MoneyLine id={odd.id} odds={odds} team={odd.home_team} />}
           />
         </div>
       ))}

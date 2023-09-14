@@ -16,8 +16,8 @@ const Page = async ({ params }: { params: Params }) => {
           <OddsTable
             key={odd.id}
             oddsItem={odd}
-            away={<Spread odds={odds} team={odd.away_team} />}
-            home={<Spread odds={odds} team={odd.home_team} />}
+            away={<Spread id={odd.id} odds={odds} team={odd.away_team} />}
+            home={<Spread id={odd.id} odds={odds} team={odd.home_team} />}
           />
         </div>
       ))}

@@ -16,7 +16,7 @@ const Page = async ({ params }: { params: Params }) => {
           <OddsTable
             key={odd.id}
             oddsItem={odd}
-            points={<Points odds={odds} team={odd.away_team} />}
+            points={<Points odd={odd} />}
           />
         </div>
       ))}
