@@ -10,8 +10,9 @@ describe("Sportsbook Odds", () => {
     cy.get('[data-cy="nfl-link"]').click();
     cy.url().should("include", "/americanfootball_nfl");
 
-    cy.get('[data-cy="bars-icon"]').click();
-    cy.get('[data-cy="nba-link"]').click();
-    cy.url().should("include", "/basketball_nba");
+    //TODO! Find a way to run this test only when NBA season/preaseason starts
+    // cy.get('[data-cy="bars-icon"]').click();
+    // cy.get('[data-cy="nba-link"]').click();
+    // cy.url().should("include", "/basketball_nba");
   });
 });
