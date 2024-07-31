@@ -13,16 +13,24 @@ const Page = async ({ params }: { params: Params }) => {
   }
   return (
     <OddsContainer hasOdds={!!odds} league={league}>
-      {odds?.map((odd) => (
-        <div key={odd.id}>
-          <OddsTable
-            key={odd.id}
-            oddsItem={odd}
-            away={<MoneyLine id={odd.id} odds={odds} team={odd.away_team} />}
-            home={<MoneyLine id={odd.id} odds={odds} team={odd.home_team} />}
-          />
-        </div>
-      ))}
+      {odds?.map((odd) => {
+        return (
+          !!odd.bookmakers.length && (
+            <div key={odd.id}>
+              <OddsTable
+                key={odd.id}
+                oddsItem={odd}
+                away={
+                  <MoneyLine id={odd.id} odds={odds} team={odd.away_team} />
+                }
+                home={
+                  <MoneyLine id={odd.id} odds={odds} team={odd.home_team} />
+                }
+              />
+            </div>
+          )
+        );
+      })}
     </OddsContainer>
   );
 };

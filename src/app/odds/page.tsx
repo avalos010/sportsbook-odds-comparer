@@ -14,16 +14,18 @@ async function Odds() {
   return (
     <main className="bg-slate-200">
       <h1 className="text-center text-4xl">Upcoming</h1>
-      {odds.map((odd) => (
-        <div key={odd.id}>
-          <OddsTable
-            key={odd.id}
-            oddsItem={odd}
-            away={<MoneyLine id={odd.id} odds={odds} team={odd.away_team} />}
-            home={<MoneyLine id={odd.id} odds={odds} team={odd.home_team} />}
-          />
-        </div>
-      ))}
+      {odds.map((odd) => {
+        return (
+          <div key={odd.id}>
+            <OddsTable
+              key={odd.id}
+              oddsItem={odd}
+              away={<MoneyLine id={odd.id} odds={odds} team={odd.away_team} />}
+              home={<MoneyLine id={odd.id} odds={odds} team={odd.home_team} />}
+            />
+          </div>
+        );
+      })}
     </main>
   );
 }

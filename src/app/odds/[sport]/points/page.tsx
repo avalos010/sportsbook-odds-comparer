@@ -15,15 +15,19 @@ const Page = async ({ params }: { params: Params }) => {
 
   return (
     <OddsContainer hasOdds={!!odds} league={league}>
-      {odds?.map((odd) => (
-        <div key={odd.id}>
-          <OddsTable
-            key={odd.id}
-            oddsItem={odd}
-            points={<Points odd={odd} />}
-          />
-        </div>
-      ))}
+      {odds?.map((odd) => {
+        return (
+          !!odd.bookmakers.length && (
+            <div key={odd.id}>
+              <OddsTable
+                key={odd.id}
+                oddsItem={odd}
+                points={<Points odd={odd} />}
+              />
+            </div>
+          )
+        );
+      })}
     </OddsContainer>
   );
 };
