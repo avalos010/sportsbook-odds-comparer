@@ -15,13 +15,15 @@ const Points = ({ odd }: PointsProps) => {
                 className="grid grid-flow-row p-3"
                 data-cy="odds-points-item"
               >
-                <span>
-                  {outcome.price > 0 ? "+" + outcome.price : outcome.price}
-                </span>
-                <span className="text-cyan-700">
+                {outcome.price > 0 ? (
+                  <p className="text-green-800">+{outcome.price}</p>
+                ) : (
+                  <p className="text-red-800">{outcome.price}</p>
+                )}
+                <p className="text-cyan-700">
                   {outcome.name} {outcome.point}
-                </span>
-                <span>{title}</span>
+                </p>
+                <p className="text-xl">{title}</p>
               </div>
             );
           });

@@ -19,13 +19,14 @@ const Moneyline = ({ team, odds, id }: MoneylineProps) => {
                       className="grid grid-flow-row p-3"
                       data-cy="odds-ml-item"
                     >
-                      <span>
-                        {outcome.price > 0
-                          ? "+" + outcome.price
-                          : outcome.price}
-                      </span>
-                      <span className="text-cyan-700">Moneyline</span>
-                      <span>{title}</span>
+                      {outcome.price > 0 ? (
+                        <span className="text-green-800">
+                          +{outcome.price} ML
+                        </span>
+                      ) : (
+                        <span className="text-red-800">{outcome.price} ML</span>
+                      )}
+                      <span className="text-xl">{title}</span>
                     </div>
                   );
                 });

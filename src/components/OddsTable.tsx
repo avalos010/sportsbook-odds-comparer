@@ -33,10 +33,10 @@ function OddsTable({ oddsItem, home, away, points }: OddsTableProps) {
   }
   return (
     <div className="m-5 flex flex-col shadow-lg">
-      <h2 className="text-3xl">
+      <h2 className="text-4xl">
         {home_team} vs {away_team}
       </h2>
-      <p className="text-cyan-700 text-sm">{startTime}</p>
+      <p className="text-cyan-700 text-base">{startTime}</p>
       <div className="p-3">
         <div className="flex flex-row justify-around p-6 bg-white flex-wrap">
           {points}
