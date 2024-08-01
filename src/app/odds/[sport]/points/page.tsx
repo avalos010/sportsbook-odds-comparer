@@ -7,7 +7,7 @@ import Points from "@/components/Points";
 const Page = async ({ params }: { params: Params }) => {
   const { sport } = params;
   const league = sport.replaceAll("_", " ").toUpperCase();
-  const odds = (await getPointOdds(sport)) as Odds[];
+  const odds: Odds[] = (await getPointOdds(sport)) ?? [];
 
   if (!odds.length) {
     return <h2 className="text-3xl text-center">No Odds available!</h2>;

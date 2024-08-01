@@ -7,7 +7,7 @@ import MoneyLine from "@/components/Moneyline";
 const Page = async ({ params }: { params: Params }) => {
   const { sport } = params;
   const league = sport.replaceAll("_", " ").toUpperCase();
-  const odds: Odds[] = (await getMoneyLineOdds(sport)) as Odds[];
+  const odds: Odds[] = (await getMoneyLineOdds(sport)) ?? [];
   if (!odds.length) {
     return <h2 className="text-3xl text-center">No Odds available!</h2>;
   }
