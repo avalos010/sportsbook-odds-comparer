@@ -24,13 +24,7 @@ function Nav() {
         onClick={() => setIsOpen(true)}
       />
       <div className="flex justify-center items-center">
-        {/* <Image
-          className="image w-32"
-          src={Logo}
-          alt="Logo for sportsbook odds comparer tool"
-          priority={true}
-        /> */}
-        <h1 className="text-4xl">SportsBooks Odds 💯</h1>
+        <h1 className="text-2xl md:text-4xl">SportsBooks Odds 💯</h1>
       </div>
       {error && (
         <Snackbar
