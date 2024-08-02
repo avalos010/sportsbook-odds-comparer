@@ -116,7 +116,6 @@ export async function getPlayerProps(
     const odds = await fetch(
       `${baseURL}/v4/sports/${sport}/events/${eventid}/odds/?apiKey=${apiKey}&markets=${markets}`
     );
-    console.log(odds);
     if (odds) {
       return odds;
     }

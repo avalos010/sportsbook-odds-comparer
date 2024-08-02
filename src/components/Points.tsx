@@ -5,7 +5,6 @@ const Points = ({ odd }: PointsProps) => {
   return (
     <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 lg:grid-cols-8 grid-flow-row">
       {odd.bookmakers.map((bookmaker: Bookmaker) => {
-        console.log(odd);
         const { title } = bookmaker;
         return bookmaker.markets.map((market: Market) => {
           return market.outcomes.map((outcome: Outcome, idx) => {
