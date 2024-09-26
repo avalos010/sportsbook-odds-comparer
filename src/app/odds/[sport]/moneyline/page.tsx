@@ -11,6 +11,8 @@ const Page = async ({ params }: { params: Params }) => {
   if (!odds.length) {
     return <h2 className="text-3xl text-center">No Odds available!</h2>;
   }
+
+  const isSoccer = sport.includes("soccer");
   return (
     <OddsContainer hasOdds={!!odds} league={league}>
       {odds?.map((odd) => {
@@ -25,6 +27,11 @@ const Page = async ({ params }: { params: Params }) => {
                 }
                 home={
                   <MoneyLine id={odd.id} odds={odds} team={odd.home_team} />
+                }
+                draw={
+                  isSoccer ? (
+                    <MoneyLine id={odd.id} odds={odds} team="Draw" />
+                  ) : null
                 }
               />
             </div>
