@@ -114,7 +114,7 @@ export async function getPlayerProps(
 ) {
   try {
     const odds = await fetch(
-      `${baseURL}/v4/sports/${sport}/events/${eventid}/odds/?apiKey=${apiKey}&regions=us&oddsFormat=american`
+      `${baseURL}/v4/sports/${sport}/events/${eventid}/odds/?apiKey=${apiKey}&regions=us&markets=player_pass_tds&oddsFormat=american`
     );
 
     const data = odds.json();

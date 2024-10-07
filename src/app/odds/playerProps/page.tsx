@@ -12,7 +12,6 @@ const playerProps = async ({ searchParams }: PlayerPropsParams) => {
 
   const props = await getPlayerProps(sport, eventId);
 
-  console.log(props);
   return (
     <div>
       <h1>Player Props real</h1>
