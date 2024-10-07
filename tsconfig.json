@@ -23,7 +23,13 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/app/odds/[sport]/playerprops"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    "src/app/odds/playerProps"
+  ],
   "exclude": ["node_modules"],
-  "baseUrl": "http://localhost:3000",
+  "baseUrl": "http://localhost:3000"
 }

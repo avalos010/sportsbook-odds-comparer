@@ -109,15 +109,17 @@ export async function getPointOdds(sport = "upcoming") {
 
 export async function getPlayerProps(
   sport: string,
-  eventid: string,
-  markets = "batter_hits"
+  eventid: string
+  // markets = "batter_hits"
 ) {
   try {
     const odds = await fetch(
-      `${baseURL}/v4/sports/${sport}/events/${eventid}/odds/?apiKey=${apiKey}&markets=${markets}`
+      `${baseURL}/v4/sports/${sport}/events/${eventid}/odds/?apiKey=${apiKey}&regions=us&oddsFormat=american`
     );
-    if (odds) {
-      return odds;
+
+    const data = odds.json();
+    if (data) {
+      return data ?? [];
     }
     return [];
   } catch (error) {

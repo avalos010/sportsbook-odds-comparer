@@ -1,6 +1,7 @@
 "use client";
 import { ReactNode } from "react";
 import { Odds } from "../../lib/api";
+import Link from "next/link";
 
 function OddsTable({ oddsItem, home, away, points, draw }: OddsTableProps) {
   const { away_team, bookmakers, home_team } = oddsItem;
@@ -12,9 +13,18 @@ function OddsTable({ oddsItem, home, away, points, draw }: OddsTableProps) {
   if (!points) {
     return (
       <div className="m-5 flex flex-col shadow-lg">
-        <h2 className="text-3xl">
-          {home_team} vs {away_team}
-        </h2>
+        <div className="flex flex-row flex-wrap justify-between p-2">
+          <h2 className="text-3xl">
+            {home_team} vs {away_team}
+          </h2>
+          <Link
+            href={`/odds/playerProps/?sport=${oddsItem.sport_key}&event=${oddsItem.id}`}
+            className="text-lg p-2 text-cyan-600 w-max"
+          >
+            Player Props
+          </Link>
+        </div>
+
         <p className="text-cyan-700 text-sm">{startTime}</p>
         <div className="p-3">
           <span>{home_team}</span>
