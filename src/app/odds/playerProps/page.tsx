@@ -1,5 +1,5 @@
-import { URLSearchParams } from "url";
 import { getPlayerProps } from "../../../../lib/api";
+import markets from "../../../../lib/playerPropMarkets.json";
 
 interface PlayerPropsParams {
   searchParams: {
@@ -10,13 +10,23 @@ interface PlayerPropsParams {
 const playerProps = async ({ searchParams }: PlayerPropsParams) => {
   const { sport, event: eventId } = searchParams;
 
-  const props = await getPlayerProps(sport, eventId);
+  const league = sport.split("_")[1];
+  const supportedMarkets = markets[league as keyof typeof markets];
 
-  return (
-    <div>
-      <h1>Player Props real</h1>
-    </div>
-  );
+  if (supportedMarkets) {
+    const props = getPlayerProps(sport, eventId);
+    return (
+      <div>
+        <h1>Player Props real</h1>
+      </div>
+    );
+  } else {
+    return (
+      <div>
+        <h2>Player Props for this league not supported!</h2>
+      </div>
+    );
+  }
 };
 
 export default playerProps;
