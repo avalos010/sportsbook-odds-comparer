@@ -1,5 +1,6 @@
 import { getPlayerProps } from "../../../../lib/api";
 import markets from "../../../../lib/playerPropMarkets.json";
+import ComboBoxClient from "./ComboBoxClient";
 
 interface PlayerPropsParams {
   searchParams: {
@@ -14,19 +15,27 @@ const playerProps = async ({ searchParams }: PlayerPropsParams) => {
   const supportedMarkets = markets[league as keyof typeof markets];
 
   if (supportedMarkets) {
-    const props = getPlayerProps(sport, eventId);
+    // const props = getPlayerProps(sport, eventId);
+    const marketsList = Object.entries(supportedMarkets).map((market) => ({
+      //TODO! Get rid of this and just use object btacket notation to do something simpler.
+      label: market[1],
+      value: market[0],
+    }));
+
+    //TODO!: Broken. will fix it soon. Hint use URL query parameters when selecting a player prop.
+    // return <ComboBoxClient marketsList={marketsList} />;
     return (
       <div>
-        <h1>Player Props real</h1>
-      </div>
-    );
-  } else {
-    return (
-      <div>
-        <h2>Player Props for this league not supported!</h2>
+        <p>Player props available</p>
       </div>
     );
   }
+
+  return (
+    <div>
+      <p>Player props not supported</p>
+    </div>
+  );
 };
 
 export default playerProps;
