@@ -14,30 +14,8 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { useState } from "react";
-
-const frameworks = [
-  {
-    value: "next.js",
-    label: "Next.js",
-  },
-  {
-    value: "sveltekit",
-    label: "SvelteKit",
-  },
-  {
-    value: "nuxt.js",
-    label: "Nuxt.js",
-  },
-  {
-    value: "remix",
-    label: "Remix",
-  },
-  {
-    value: "astro",
-    label: "Astro",
-  },
-];
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 
 interface listItem {
   value: string;
@@ -46,12 +24,20 @@ interface listItem {
 
 interface ComboBoxProps {
   list: listItem[];
-  onSelect: (value: string) => void;
+  onSelect: (value: string, label: string) => void;
 }
 
 export function ComboBox({ list, onSelect }: ComboBoxProps) {
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState("");
+  const router = useRouter();
+
+  useEffect(() => {
+    const url = new URLSearchParams(window.location.href);
+
+    const currentlVal = url.get("markets");
+    setValue(currentlVal as string);
+  }, []);
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
@@ -80,7 +66,7 @@ export function ComboBox({ list, onSelect }: ComboBoxProps) {
                   onSelect={(currentValue) => {
                     setValue(currentValue === value ? "" : currentValue);
                     setOpen(false);
-                    onSelect(currentValue);
+                    onSelect(currentValue, item.label);
                   }}
                 >
                   {item.label}
