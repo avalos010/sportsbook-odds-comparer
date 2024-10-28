@@ -5,13 +5,14 @@ import updateSearchParams from "@/utils/updateSearchParams";
 import React from "react";
 
 interface ComboBoxClientProps {
+  props: any;
   marketsList: {
     label: string;
     value: string;
   }[];
 }
 
-function ComboBoxClient({ marketsList }: ComboBoxClientProps) {
+function ComboBoxClient({ marketsList, props }: ComboBoxClientProps) {
   const handlePropSelect = (key: string, label: string) => {
     updateSearchParams("markets", key);
     updateSearchParams("marketsLabel", label);
