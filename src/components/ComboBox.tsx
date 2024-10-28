@@ -80,6 +80,7 @@ export function ComboBox({ list, onSelect }: ComboBoxProps) {
                   onSelect={(currentValue) => {
                     setValue(currentValue === value ? "" : currentValue);
                     setOpen(false);
+                    onSelect(currentValue);
                   }}
                 >
                   {item.label}

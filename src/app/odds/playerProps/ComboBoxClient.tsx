@@ -1,3 +1,5 @@
+"use client";
+
 import ComboBox from "@/components/ComboBox";
 import React from "react";
 
@@ -6,13 +8,12 @@ interface ComboBoxClientProps {
     label: string;
     value: string;
   }[];
-  handlePropSelect: (value: string) => void;
 }
 
-function ComboBoxClient({
-  marketsList,
-  handlePropSelect,
-}: ComboBoxClientProps) {
+function ComboBoxClient({ marketsList }: ComboBoxClientProps) {
+  const handlePropSelect = (key: string) => {
+    console.log(key);
+  };
   return <ComboBox list={marketsList} onSelect={handlePropSelect} />;
 }
 

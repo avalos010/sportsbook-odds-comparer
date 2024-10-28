@@ -23,12 +23,7 @@ const playerProps = async ({ searchParams }: PlayerPropsParams) => {
     }));
 
     //TODO!: Broken. will fix it soon. Hint use URL query parameters when selecting a player prop.
-    // return <ComboBoxClient marketsList={marketsList} />;
-    return (
-      <div>
-        <p>Player props available</p>
-      </div>
-    );
+    return <ComboBoxClient marketsList={marketsList} />;
   }
 
   return (
