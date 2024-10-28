@@ -3,9 +3,10 @@
 import ComboBox from "@/components/ComboBox";
 import updateSearchParams from "@/utils/updateSearchParams";
 import React from "react";
+import { PlayerPropsData } from "./page";
 
 interface ComboBoxClientProps {
-  props: any;
+  props: PlayerPropsData;
   marketsList: {
     label: string;
     value: string;
