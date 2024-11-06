@@ -1,23 +1,15 @@
-import PlayerProp from "@/components/PlayerProp";
-import { getPlayerProps } from "../../../../lib/api";
+import PlayerPropContainer from "@/components/PlayerPropContainer";
 import markets from "../../../../lib/playerPropMarkets.json";
 import ComboBoxClient from "./ComboBoxClient";
-
-import { v4 } from "uuid";
+import { getPlayerProps } from "../../../../lib/api";
 
 const playerProps = async ({ searchParams }: PlayerPropsParams) => {
-  const { sport, event: eventId } = searchParams;
+  const sport = searchParams.sport;
 
-  const league = sport.split("_")[1];
+  const league = sport?.split("_")[1];
   const supportedMarkets = markets[league as keyof typeof markets];
 
-  if (supportedMarkets) {
-    const markets = searchParams.markets;
-    const props: PlayerPropsData = await getPlayerProps(
-      sport,
-      eventId,
-      markets
-    );
+  if (supportedMarkets && sport) {
     const marketsList = Object.entries(supportedMarkets).map((market) => ({
       //TODO! Get rid of this and just use object btacket notation to do something simpler.
       label: market[1],
@@ -28,10 +20,8 @@ const playerProps = async ({ searchParams }: PlayerPropsParams) => {
     return (
       <div className="flex flex-col items-center">
         <h2 className="text-2xl mb-4">Player Props </h2>
-        <ComboBoxClient props={props} marketsList={marketsList} />;
-        {props.bookmakers.map((bookmaker) => (
-          <PlayerProp key={v4()} bookmaker={bookmaker} />
-        ))}
+        <ComboBoxClient marketsList={marketsList} />;
+        <PlayerPropContainer getPlayerProps={getPlayerProps} />
       </div>
     );
   }
@@ -52,33 +42,4 @@ interface PlayerPropsParams {
     markets: string;
     marketLabel: string;
   };
-}
-
-export interface PlayerPropsData {
-  away_team: string;
-  bookmakers: Bookmaker[];
-  commence_time: string;
-  home_team: string;
-  id: string;
-  sport_key: string;
-  sport_title: string;
-}
-
-export interface Bookmaker {
-  key: string;
-  markets: Market[];
-  title: string;
-}
-
-export interface Market {
-  key: string;
-  last_update: string;
-  outcomes: Outcome[];
-}
-
-interface Outcome {
-  description: string;
-  name: string;
-  point: number;
-  price: number;
 }

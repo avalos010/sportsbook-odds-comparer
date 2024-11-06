@@ -111,8 +111,8 @@ export async function getPlayerProps(
   sport: string,
   eventid: string,
   markets: string
-  // markets = "batter_hits"
 ) {
+  "use server";
   try {
     const odds = await fetch(
       `${baseURL}/v4/sports/${sport}/events/${eventid}/odds/?apiKey=${apiKey}&regions=us&markets=${markets}&oddsFormat=american`

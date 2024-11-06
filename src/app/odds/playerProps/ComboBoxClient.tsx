@@ -1,22 +1,23 @@
 "use client";
 
 import ComboBox from "@/components/ComboBox";
-import updateSearchParams from "@/utils/updateSearchParams";
-import React from "react";
-import { PlayerPropsData } from "./page";
+import { useSearchParams } from "next/navigation";
 
 interface ComboBoxClientProps {
-  props: PlayerPropsData;
   marketsList: {
     label: string;
     value: string;
   }[];
 }
 
-function ComboBoxClient({ marketsList, props }: ComboBoxClientProps) {
+function ComboBoxClient({ marketsList }: ComboBoxClientProps) {
+  const searchParams = useSearchParams();
+
   const handlePropSelect = (key: string, label: string) => {
-    updateSearchParams("markets", key);
-    updateSearchParams("marketsLabel", label);
+    const params = new URLSearchParams(searchParams?.toString());
+    params.set("markets", key);
+    params.set("marketsLabel", label);
+    window.history.pushState(null, "", `?${params.toString()}`);
   };
 
   return <ComboBox list={marketsList} onSelect={handlePropSelect} />;

@@ -1,8 +1,7 @@
 import React from "react";
-import { Bookmaker, PlayerPropsData } from "@/app/odds/playerProps/page";
+import { Bookmaker } from "./PlayerPropContainer";
 
 function PlayerProp({ bookmaker }: PlayerPropProps) {
-  console.log(bookmaker);
   return (
     <div>
       {bookmaker.markets[0].outcomes.map((outcome) => (
