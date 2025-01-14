@@ -115,8 +115,8 @@ export async function getPlayerProps(
   "use server";
   try {
     const odds = await fetch(
-      `${baseURL}/v4/sports/${sport}/events/${eventid}/odds/?apiKey=${apiKey}&regions=us&markets=${markets}&oddsFormat=american`
-      // { cache: "force-cache" }
+      `${baseURL}/v4/sports/${sport}/events/${eventid}/odds/?apiKey=${apiKey}&regions=us&markets=${markets}&oddsFormat=american`,
+      { cache: "force-cache" }
     );
 
     const data = odds.json();

@@ -1,7 +1,4 @@
 "use client";
-
-import { v4 } from "uuid";
-import PlayerProp from "./PlayerProp";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
@@ -10,7 +7,11 @@ function PlayerPropContainer({ getPlayerProps }: PlayerPropContainerProps) {
   const sport = searchParams?.get("sport") as string;
   const eventId = searchParams?.get("event") as string;
   const markets = searchParams?.get("markets") as string;
-  const [playerProps, setPlayerProps] = useState<PlayerPropsData | null>(null);
+  const [playerProps, setPlayerProps] = useState<ReformattedPlayerProps | null>(
+    null
+  );
+
+  const [propMarket, setPropMarket] = useState<string | null>(null);
 
   useEffect(() => {
     updatePlayerProps();
@@ -18,17 +19,32 @@ function PlayerPropContainer({ getPlayerProps }: PlayerPropContainerProps) {
 
   const updatePlayerProps = async () => {
     const data = await getPlayerProps(sport, eventId, markets);
-
-    setPlayerProps(data);
+    setPropMarket(data.bookmakers[0].markets[0].key.replaceAll("_", " "));
+    setPlayerProps(reformatPlayerProps(data));
   };
-
-  console.log(playerProps);
 
   return (
     <div>
-      {playerProps?.bookmakers?.map((bookmaker) => (
-        <PlayerProp key={v4()} bookmaker={bookmaker} />
-      ))}
+      <h2 className="text-4xl mb-7">{propMarket}</h2>
+      {playerProps &&
+        Object.entries(playerProps).map((details) => {
+          const [player, odds] = details;
+          return (
+            <div className="mb-5">
+              <h2 className="text-2xl">{player}</h2>
+              <div className="flex flex-col gap-2">
+                {odds.map((odd) => (
+                  <div className="flex flex-col">
+                    <p>{odd.book}</p>
+                    <p>{odd.name}</p>
+                    <p>{odd.point}</p>
+                    <p>{odd.name}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          );
+        })}
     </div>
   );
 }
@@ -70,4 +86,41 @@ interface PlayerPropContainerProps {
     eventId: string,
     markets: string
   ) => Promise<PlayerPropsData>;
+}
+
+interface ReformattedPlayerProps {
+  [key: string]: {
+    name: string;
+    book: string;
+    price: number;
+    point: number;
+  }[];
+}
+
+function reformatPlayerProps(playerProps: PlayerPropsData) {
+  //make data shape easier to work with and map through. I will thank myself later.
+  const result: ReformattedPlayerProps = {};
+
+  playerProps.bookmakers.forEach((bookmaker) => {
+    bookmaker.markets.forEach((market) => {
+      market.outcomes.forEach((outcome) => {
+        const playerName = outcome.description;
+
+        if (!result[playerName]) {
+          result[playerName] = [];
+        }
+
+        console.log(outcome, market);
+
+        result[playerName].push({
+          name: outcome.name,
+          book: bookmaker.title,
+          price: outcome.price,
+          point: outcome.point,
+        });
+      });
+    });
+  });
+
+  return result;
 }
