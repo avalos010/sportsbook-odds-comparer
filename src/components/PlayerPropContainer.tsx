@@ -36,9 +36,10 @@ function PlayerPropContainer({ getPlayerProps }: PlayerPropContainerProps) {
                 {odds.map((odd) => (
                   <div className="flex flex-col">
                     <p>{odd.book}</p>
-                    <p>{odd.name}</p>
-                    <p>{odd.point}</p>
-                    <p>{odd.name}</p>
+                    <p>
+                      {odd.name} {odd?.point}
+                    </p>
+                    <p>{odd.price}</p>
                   </div>
                 ))}
               </div>
@@ -93,7 +94,7 @@ interface ReformattedPlayerProps {
     name: string;
     book: string;
     price: number;
-    point: number;
+    point?: number;
   }[];
 }
 
@@ -109,8 +110,6 @@ function reformatPlayerProps(playerProps: PlayerPropsData) {
         if (!result[playerName]) {
           result[playerName] = [];
         }
-
-        console.log(outcome, market);
 
         result[playerName].push({
           name: outcome.name,
