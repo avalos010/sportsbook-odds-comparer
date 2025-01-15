@@ -19,27 +19,37 @@ function PlayerPropContainer({ getPlayerProps }: PlayerPropContainerProps) {
 
   const updatePlayerProps = async () => {
     const data = await getPlayerProps(sport, eventId, markets);
-    setPropMarket(data.bookmakers[0].markets[0].key.replaceAll("_", " "));
-    setPlayerProps(reformatPlayerProps(data));
+    if (data?.bookmakers) {
+      setPropMarket(data.bookmakers[0]?.markets[0].key.replaceAll("_", " "));
+      setPlayerProps(reformatPlayerProps(data));
+    }
   };
 
+  if (!playerProps) {
+    return <h3 className="text-3xl">Please select player props</h3>;
+  }
+
   return (
-    <div>
-      <h2 className="text-4xl mb-7">{propMarket}</h2>
+    <div className="w-full">
+      <h2 className="text-4xl mb-7 capitalize">{propMarket}</h2>
       {playerProps &&
         Object.entries(playerProps).map((details) => {
           const [player, odds] = details;
           return (
-            <div className="mb-5">
+            <div className="m-5 flex flex-col shadow-lg">
               <h2 className="text-2xl">{player}</h2>
-              <div className="flex flex-col gap-2">
+              <div className="flex flex-row justify-around p-6 bg-white flex-wrap">
                 {odds.map((odd) => (
-                  <div className="flex flex-col">
-                    <p>{odd.book}</p>
+                  <div className="flex flex-col items-center">
+                    {odd.price > 0 ? (
+                      <p className="text-green-800">+{odd.price}</p>
+                    ) : (
+                      <p className="text-red-800">{odd.price}</p>
+                    )}
+                    <p className="text-xl">{odd.book}</p>
                     <p>
                       {odd.name} {odd?.point}
                     </p>
-                    <p>{odd.price}</p>
                   </div>
                 ))}
               </div>

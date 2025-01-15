@@ -14,7 +14,7 @@ async function Odds() {
   }
 
   return (
-    <main className="bg-slate-200">
+    <main>
       <h1 className="text-center text-4xl">Upcoming</h1>
       {odds.map((odd) => {
         return (
