@@ -2,7 +2,6 @@ import React from "react";
 import { Bookmaker } from "./PlayerPropContainer";
 
 function PlayerProp({ bookmaker }: PlayerPropProps) {
-  console.log(bookmaker);
   return (
     <div>
       <h2>{bookmaker.title}</h2>

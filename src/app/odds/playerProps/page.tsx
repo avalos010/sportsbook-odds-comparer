@@ -20,7 +20,7 @@ const playerProps = async ({ searchParams }: PlayerPropsParams) => {
     return (
       <div className="flex flex-col items-center">
         <h2 className="text-2xl mb-4">Player Props </h2>
-        <ComboBoxClient marketsList={marketsList} />;
+        <ComboBoxClient marketsList={marketsList} />
         <PlayerPropContainer getPlayerProps={getPlayerProps} />
       </div>
     );
