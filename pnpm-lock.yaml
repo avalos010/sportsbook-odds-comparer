@@ -70,6 +70,9 @@ dependencies:
     version: 11.0.3
 
 devDependencies:
+  '@next/env':
+    specifier: ^15.1.5
+    version: 15.1.5
   '@types/node':
     specifier: ^22.0.2
     version: 22.10.3
@@ -312,6 +315,10 @@ packages:
   /@next/env@14.2.22:
     resolution: {integrity: sha512-EQ6y1QeNQglNmNIXvwP/Bb+lf7n9WtgcWvtoFsHquVLCJUuxRs+6SfZ5EK0/EqkkLex4RrDySvKgKNN7PXip7Q==}
     dev: false
+
+  /@next/env@15.1.5:
+    resolution: {integrity: sha512-jg8ygVq99W3/XXb9Y6UQsritwhjc+qeiO7QrGZRYOfviyr/HcdnhdBQu4gbp2rBIh2ZyBYTBMWbPw3JSCb0GHw==}
+    dev: true
 
   /@next/eslint-plugin-next@14.2.22:
     resolution: {integrity: sha512-8xCmBMd+hUapMpviPp5g3oDhoWRtbE/QeN/Nvth+SZrdt7xt9TBsH8cePkRwRjXFpwHndpRDNVQROxR/1HiVbg==}
