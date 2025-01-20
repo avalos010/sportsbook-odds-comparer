@@ -12,12 +12,13 @@ function OddsTable({ oddsItem, home, away, points, draw }: OddsTableProps) {
 
   if (!points) {
     return (
-      <div className="m-5 flex flex-col shadow-lg">
+      <div className="m-5 flex flex-col shadow-lg" data-cy="odds-table">
         <div className="flex flex-row flex-wrap justify-between p-2">
           <h2 className="text-3xl">
             {home_team} vs {away_team}
           </h2>
           <Link
+            data-cy="player-props-link"
             href={`/odds/playerProps/?sport=${oddsItem.sport_key}&event=${oddsItem.id}`}
             className="text-lg p-2 text-cyan-600 w-max"
           >

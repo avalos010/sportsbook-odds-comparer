@@ -30,7 +30,7 @@ function PlayerPropContainer({ getPlayerProps }: PlayerPropContainerProps) {
   }
 
   return (
-    <div className="w-full">
+    <div className="w-full" data-cy="playerprop-container">
       <h2 className="text-4xl mb-7 capitalize">{propMarket}</h2>
       {playerProps &&
         Object.entries(playerProps).map((details) => {

@@ -43,6 +43,7 @@ export function ComboBox({ list, onSelect }: ComboBoxProps) {
     <Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger asChild>
         <Button
+          data-cy="combobox"
           variant="outline"
           role="combobox"
           aria-expanded={open}
