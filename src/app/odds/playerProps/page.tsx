@@ -10,13 +10,13 @@ const playerProps = async ({ searchParams }: PlayerPropsParams) => {
   const supportedMarkets = markets[league as keyof typeof markets];
 
   if (supportedMarkets && sport) {
-    const marketsList = Object.entries(supportedMarkets).map((market) => ({
-      //TODO! Get rid of this and just use object btacket notation to do something simpler.
-      label: market[1],
-      value: market[0],
-    }));
+    const marketsList = Object.entries(supportedMarkets).map(
+      ([value, label]) => ({
+        label,
+        value,
+      })
+    );
 
-    //TODO!: Broken. will fix it soon. Hint use URL query parameters when selecting a player prop.
     return (
       <div className="flex flex-col items-center">
         <h2 className="text-2xl mb-4">Player Props </h2>

@@ -27,21 +27,19 @@ function OddsTable({ oddsItem, home, away, points, draw }: OddsTableProps) {
         </div>
 
         <p className="text-cyan-700 text-sm">{startTime}</p>
-        <div className="p-3">
-          <span>{home_team}</span>
-          <div className="flex flex-row justify-around p-6 bg-white flex-wrap">
-            {home}
-          </div>
+        <span>{home_team}</span>
+        <div className="flex flex-row justify-around p-6 bg-white flex-wrap">
+          {home}
         </div>
         {draw && (
-          <div className="p-3">
+          <div>
             <span>Draw</span>
             <div className="flex flex-row justify-around p-6 bg-white flex-wrap">
               {draw}
             </div>
           </div>
         )}
-        <div className="p-3">
+        <div>
           <span>{away_team}</span>
           <div className="flex flex-row justify-around p-6 bg-white flex-wrap">
             {away}
@@ -56,10 +54,8 @@ function OddsTable({ oddsItem, home, away, points, draw }: OddsTableProps) {
         {home_team} vs {away_team}
       </h2>
       <p className="text-cyan-700 text-base">{startTime}</p>
-      <div className="p-3">
-        <div className="flex flex-row justify-around p-6 bg-white flex-wrap">
-          {points}
-        </div>
+      <div className="flex flex-row justify-around p-6 bg-white flex-wrap">
+        {points}
       </div>
     </div>
   );

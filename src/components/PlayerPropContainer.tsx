@@ -31,7 +31,7 @@ function PlayerPropContainer({ getPlayerProps }: PlayerPropContainerProps) {
 
   return (
     <div className="w-full" data-cy="playerprop-container">
-      <h2 className="text-4xl mb-7 capitalize">{propMarket}</h2>
+      <h2 className="text-5xl capitalize text-center m-7">{propMarket}</h2>
       {playerProps &&
         Object.entries(playerProps).map((details) => {
           const [player, odds] = details;
@@ -39,19 +39,21 @@ function PlayerPropContainer({ getPlayerProps }: PlayerPropContainerProps) {
             <div className="m-5 flex flex-col shadow-lg">
               <h2 className="text-2xl">{player}</h2>
               <div className="flex flex-row justify-around p-6 bg-white flex-wrap">
-                {odds.map((odd) => (
-                  <div className="flex flex-col items-center">
-                    {odd.price > 0 ? (
-                      <p className="text-green-800">+{odd.price}</p>
-                    ) : (
-                      <p className="text-red-800">{odd.price}</p>
-                    )}
-                    <p className="text-xl">{odd.book}</p>
-                    <p>
-                      {odd.name} {odd?.point}
-                    </p>
-                  </div>
-                ))}
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 lg:grid-cols-8 grid-flow-row">
+                  {odds.map((odd) => (
+                    <div className="flex flex-col items-center p-3">
+                      {odd.price > 0 ? (
+                        <p className="text-green-800">+{odd.price}</p>
+                      ) : (
+                        <p className="text-red-800">{odd.price}</p>
+                      )}
+                      <p className="text-cyan-700">
+                        {odd.name} {odd?.point}
+                      </p>
+                      <p className="text-xl">{odd.book}</p>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
           );
