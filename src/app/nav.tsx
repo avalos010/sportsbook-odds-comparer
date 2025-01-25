@@ -1,7 +1,5 @@
 "use client";
 import Link from "next/link";
-import Logo from "../../public/next.svg";
-import Image from "next/image";
 import { Sport } from "../../lib/api";
 import { useState } from "react";
 import Snackbar from "../components/Snackbar";
@@ -43,22 +41,24 @@ function Nav() {
             className="text-black w-14 absolute top-3 right-3 hover:text-white cursor-pointer"
             onClick={() => setIsOpen(false)}
           />
-          {sports &&
-            sports.map((sport: Sport) => {
-              return (
-                <Link
-                  className="text-white text-1xl"
-                  key={sport.key}
-                  data-cy={`${sport.title.toLowerCase()}-link`}
-                  onClick={() => {
-                    setIsOpen(false);
-                  }}
-                  href={`/odds/${sport.key}/moneyline`}
-                >
-                  {sport.title}
-                </Link>
-              );
-            })}
+          {sports?.length ? (
+            sports.map((sportItem: Sport) => (
+              <Link
+                className="text-white text-xl"
+                key={sportItem.key}
+                data-cy={`${sportItem.title.toLowerCase()}-link`}
+                onClick={() => setIsOpen(false)}
+                href={`/odds/${sportItem.key}/moneyline`}
+              >
+                {sportItem.title}
+              </Link>
+            ))
+          ) : (
+            <Snackbar
+              message="Oops! it looks like no data is available!"
+              type="error"
+            />
+          )}
         </div>
       </div>
     </nav>
