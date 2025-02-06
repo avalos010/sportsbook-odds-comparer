@@ -1,14 +1,27 @@
 "use client";
-import { ReactNode } from "react";
+import { ReactNode, useEffect, useState } from "react";
 import { Odds } from "../../lib/api";
 import Link from "next/link";
 
 function OddsTable({ oddsItem, home, away, points, draw }: OddsTableProps) {
-  const { away_team, bookmakers, home_team } = oddsItem;
+  const { away_team, bookmakers, home_team, sport_key } = oddsItem;
   const startTime = new Date(oddsItem.commence_time).toLocaleString("en-US", {
     dateStyle: "medium",
     timeStyle: "short",
   });
+
+  const supportedPlayerPropsLeagues = ["nba", "nfl", "nhl", "mlb"];
+  const [supportsPlayerProps, setSupportsPlayerProps] = useState(false);
+
+  useEffect(() => {
+    supportedPlayerPropsLeagues.forEach((league) => {
+      if (sport_key.includes(league)) {
+        setSupportsPlayerProps(true);
+      }
+    });
+  }, []);
+
+  //find out if player props are supported for this sport using oddsItem.sport_key and compare it to see if any substring from supportedPlayerPropsLeagues
 
   if (!points) {
     return (
@@ -17,13 +30,15 @@ function OddsTable({ oddsItem, home, away, points, draw }: OddsTableProps) {
           <h2 className="text-3xl">
             {home_team} vs {away_team}
           </h2>
-          <Link
-            data-cy="player-props-link"
-            href={`/odds/playerProps/?sport=${oddsItem.sport_key}&event=${oddsItem.id}`}
-            className="text-lg p-2 text-cyan-600 w-max"
-          >
-            Player Props
-          </Link>
+          {supportsPlayerProps && (
+            <Link
+              data-cy="player-props-link"
+              href={`/odds/playerProps/?sport=${oddsItem.sport_key}&event=${oddsItem.id}`}
+              className="text-lg p-2 text-cyan-600 w-max"
+            >
+              Player Props
+            </Link>
+          )}
         </div>
 
         <p className="text-cyan-700 text-sm">{startTime}</p>
