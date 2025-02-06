@@ -18,11 +18,9 @@ describe("Sportsbook Odds", () => {
 });
 
 describe("Player Props Page", () => {
-  beforeEach(() => {
-    cy.visit("/");
-  });
-
   it("displays player props for selected sport, event, and markets", () => {
+    cy.visit("/");
+
     // Navigate to the odds page for NBA (while its active)
     cy.get('[data-cy="bars-icon"]').click();
     cy.get('[data-cy="nba-link"]').click();
@@ -39,5 +37,37 @@ describe("Player Props Page", () => {
     cy.get('[data-cy="combobox"]').should("exist");
   });
 
-  //TODO!: Add test testing player prop odds.
+  it("shows correct player props line and odds", () => {
+    const testURL =
+      "/odds/playerProps?sport=basketball_nba&event=a75904869ceb53ced4baae29638d4907&markets=player_assists&marketsLabel=Assists";
+
+    cy.visit(testURL);
+
+    cy.get('[data-cy="player-props-item"]').first().should("be.visible");
+    cy.get('[data-cy="player-props-item"]')
+      .first()
+      .children('[data-cy="player-name"]')
+      .invoke("text")
+      .should("eq", "Tyrese Haliburton");
+
+    cy.get('[data-cy="player-props-odds-item"]').first().should("be.visible");
+    cy.get('[data-cy="player-props-odds-item"]')
+      .first()
+      .children('[data-cy="odds-price"]')
+      .invoke("text")
+      .should("eq", "-120");
+
+    cy.get('[data-cy="player-props-odds-item"]').first().should("be.visible");
+    cy.get('[data-cy="player-props-odds-item"]')
+      .first()
+      .children('[data-cy="odds-point"]')
+      .invoke("text")
+      .should("eq", "Over 10.5");
+
+    cy.get('[data-cy="player-props-odds-item"]')
+      .first()
+      .children('[data-cy="odds-book"]')
+      .invoke("text")
+      .should("eq", "DraftKings");
+  });
 });
