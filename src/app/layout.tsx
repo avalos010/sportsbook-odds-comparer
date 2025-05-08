@@ -1,6 +1,7 @@
 import Nav from "./nav";
 import { Analytics } from "@vercel/analytics/react";
 import "./globals.css";
+import MiniNav from "@/components/MiniNav";
 
 export const metadata = {
   title: "SportsBook Odds Comparer",
@@ -16,6 +17,8 @@ export default function RootLayout({
     <html lang="en">
       <body className="bg-slate-200">
         <Nav />
+        <MiniNav />
+
         {children}
       </body>
       <Analytics />
