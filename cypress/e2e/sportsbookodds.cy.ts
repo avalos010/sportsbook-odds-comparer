@@ -66,3 +66,20 @@ describe("Player Props Page", () => {
       .should("eq", "DraftKings");
   });
 });
+
+describe("Mini Nav", () => {
+  it('should navigate to the MMA moneyline page when clicking on the "MMA" link', () => {
+    cy.visit("/");
+
+    cy.get('[href="/odds/mma_mixed_martial_arts/moneyline"]').click();
+
+    cy.location("pathname").should(
+      "eq",
+      "/odds/mma_mixed_martial_arts/moneyline"
+    );
+
+    //cy.title().should("eq", "MMA Moneyline Odds"); // TODO: start adding page titles.
+
+    cy.get("h1").should("contain", "MMA MIXED MARTIAL ARTS");
+  });
+});
