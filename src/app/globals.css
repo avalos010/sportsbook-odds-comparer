@@ -62,12 +62,6 @@
   }
   body {
     @apply bg-background text-foreground;
-    background-image: radial-gradient(1000px 400px at 0% 0%, #e0f2fe33, transparent), radial-gradient(800px 300px at 100% 0%, #f1f5f933, transparent);
-    background-attachment: fixed;
-  }
-  .dark body, body.dark {
-    background-image: radial-gradient(1000px 400px at 0% 0%, #0b122033, transparent), radial-gradient(800px 300px at 100% 0%, #0b122033, transparent);
-    background-attachment: fixed;
   }
 }
 /* Accessibility: skip link for keyboard users */
@@ -93,7 +87,16 @@ button:focus-visible {
 
 /* Minimal modern cards */
 .card {
-  @apply rounded-md border bg-white shadow-sm dark:bg-[hsl(240_10%_6%)] dark:border-[hsl(240_3.7%_15.9%)];
+  @apply rounded-xl border bg-white shadow-sm dark:bg-[hsl(240_10%_6%)] dark:border-[hsl(240_3.7%_15.9%)] transition-shadow hover:shadow-md;
+}
+
+/* Hide scrollbar when used on horizontal scrollers */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
 /* Reduced motion preference */

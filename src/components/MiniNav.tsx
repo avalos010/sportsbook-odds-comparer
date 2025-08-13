@@ -1,57 +1,45 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 const sports = [
-  {
-    name: "MMA",
-    href: "/odds/mma_mixed_martial_arts/moneyline",
-  },
-  {
-    name: "Boxing",
-    href: "/odds/boxing_boxing/moneyline",
-  },
-  {
-    name: "NBA",
-    href: "/odds/basketball_nba/moneyline",
-  },
-  {
-    name: "MLB",
-    href: "/odds/baseball_mlb/moneyline",
-  },
-  {
-    name: "NHL",
-    href: "/odds/icehockey_nhl/moneyline",
-  },
+  { name: "Upcoming", href: "/" },
+  { name: "MMA", href: "/odds/mma_mixed_martial_arts/moneyline" },
+  { name: "Boxing", href: "/odds/boxing_boxing/moneyline" },
+  { name: "NBA", href: "/odds/basketball_nba/moneyline" },
+  { name: "MLB", href: "/odds/baseball_mlb/moneyline" },
+  { name: "NHL", href: "/odds/icehockey_nhl/moneyline" },
 ];
+
 const MiniNav = () => {
+  const pathname = usePathname();
   return (
     <nav aria-label="Popular sports" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div className="flex flex-col items-center py-4 bg-white/70 backdrop-blur rounded-md border shadow-sm">
-        <h2 className="text-base sm:text-lg font-medium">Popular</h2>
-        <ul className="mt-2 flex flex-wrap gap-2">
-          <li key="upcoming">
-            <Link
-              href="/"
-              replace={true}
-              className="inline-flex items-center rounded-full border px-3 py-1 text-sm text-gray-700 hover:text-cyan-700 hover:border-cyan-300"
-            >
-              Upcoming
-            </Link>
-          </li>
-          {sports.map((sport, index) => (
-            <li key={index}>
+      <div className="flex items-center justify-between py-3">
+        <h2 className="text-sm text-muted-foreground">Quick access</h2>
+      </div>
+      <ul className="no-scrollbar -mx-4 flex gap-2 overflow-x-auto px-4 pb-2">
+        {sports.map(({ name, href }) => {
+          const isActive = pathname === href || (name === "Upcoming" && pathname === "/");
+          return (
+            <li key={href} className="shrink-0">
               <Link
-                href={sport.href}
+                href={href}
                 replace={true}
-                className="inline-flex items-center rounded-full border px-3 py-1 text-sm text-gray-700 hover:text-cyan-700 hover:border-cyan-300"
+                className={`inline-flex items-center rounded-full border px-4 py-2 text-sm transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-cyan-400 ${
+                  isActive
+                    ? "bg-cyan-600 text-white border-cyan-600"
+                    : "text-gray-700 hover:text-cyan-700 hover:border-cyan-300"
+                }`}
+                aria-current={isActive ? "page" : undefined}
               >
-                {sport.name}
+                {name}
               </Link>
             </li>
-          ))}
-        </ul>
-      </div>
+          );
+        })}
+      </ul>
     </nav>
   );
 };

@@ -45,20 +45,20 @@ function OddsTable({ oddsItem, home, away, points, draw }: OddsTableProps) {
         <div className="px-3 sm:px-4 pb-2">
           <h3 className="text-base sm:text-lg font-medium">{home_team}</h3>
         </div>
-        <div className="flex flex-row justify-around p-3 sm:p-6 bg-white flex-wrap gap-2">
+        <div className="flex flex-row justify-around p-3 sm:p-6 flex-wrap gap-2">
           {home}
         </div>
         {draw && (
           <div className="px-3 sm:px-4 pb-2">
             <h3 className="text-base sm:text-lg font-medium">Draw</h3>
-            <div className="flex flex-row justify-around p-3 sm:p-6 bg-white flex-wrap gap-2">
+            <div className="flex flex-row justify-around p-3 sm:p-6 flex-wrap gap-2">
               {draw}
             </div>
           </div>
         )}
         <div className="px-3 sm:px-4 pb-2">
           <h3 className="text-base sm:text-lg font-medium">{away_team}</h3>
-          <div className="flex flex-row justify-around p-3 sm:p-6 bg-white flex-wrap gap-2">
+          <div className="flex flex-row justify-around p-3 sm:p-6 flex-wrap gap-2">
             {away}
           </div>
         </div>
@@ -71,7 +71,7 @@ function OddsTable({ oddsItem, home, away, points, draw }: OddsTableProps) {
         {home_team} vs {away_team}
       </h2>
       <p className="text-cyan-700 text-xs sm:text-base px-3 sm:px-4 pb-2">{startTime}</p>
-      <div className="flex flex-row justify-around p-3 sm:p-6 bg-white flex-wrap gap-2">
+      <div className="flex flex-row justify-around p-3 sm:p-6 flex-wrap gap-2">
         {points}
       </div>
     </section>
