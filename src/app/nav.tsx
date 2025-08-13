@@ -14,13 +14,18 @@ function Nav() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <nav className=" bg-cyan-600 w-full border-b-2 p-4 relative">
-      <Bars3Icon
+    <nav className=" bg-cyan-600 w-full border-b-2 p-4 relative" aria-label="Primary">
+      <button
+        type="button"
         data-cy="bars-icon"
-        width={56}
-        className="text-black absolute top-0 left-3 hover:text-white cursor-pointer"
+        aria-label="Open menu"
+        aria-controls="primary-navigation"
+        aria-expanded={isOpen}
+        className="text-black absolute top-0 left-3 hover:text-white"
         onClick={() => setIsOpen(true)}
-      />
+      >
+        <Bars3Icon width={56} aria-hidden="true" className="pointer-events-none" />
+      </button>
       <div className="flex justify-center items-center">
         <h1 className="text-2xl md:text-4xl">SportsBooks Odds 💯</h1>
       </div>
@@ -35,12 +40,24 @@ function Nav() {
         className={`p-3 fixed -top-3 bottom-0 duration-75 transition-opacity ease-in  overflow-y-scroll z-10 bg-black/50 w-full ${
           isOpen ? "left-0 opacity-100" : "-left-full opacity-0"
         }`}
+        aria-hidden={!isOpen}
+        role={isOpen ? "dialog" : undefined}
+        aria-modal={isOpen || undefined}
       >
-        <div className="flex flex-col gap-4 justify-center  bg-cyan-600 p-3 -ml-3 md:w-4/12 w-3/4">
-          <XMarkIcon
-            className="text-black w-14 absolute top-3 right-3 hover:text-white cursor-pointer"
+        <div
+          id="primary-navigation"
+          role="navigation"
+          aria-label="Main menu"
+          className="flex flex-col gap-4 justify-center  bg-cyan-600 p-3 -ml-3 md:w-4/12 w-3/4"
+        >
+          <button
+            type="button"
+            aria-label="Close menu"
+            className="text-black w-14 absolute top-3 right-3 hover:text-white"
             onClick={() => setIsOpen(false)}
-          />
+          >
+            <XMarkIcon aria-hidden="true" className="w-14 h-14 pointer-events-none" />
+          </button>
           {sports?.length ? (
             sports.map((sportItem: Sport) => (
               <Link

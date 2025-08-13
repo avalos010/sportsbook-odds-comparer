@@ -12,7 +12,7 @@ function OddsContainer({ league, children, hasOdds }: OddsContainerProps) {
   }
 
   return (
-    <main>
+    <main id="main">
       <h1 className="text-4xl text-center">{league.toUpperCase()}</h1>
       <OddsMenu />
       {children}

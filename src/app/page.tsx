@@ -5,7 +5,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
   return (
-    <main>
+    <main id="main">
       {/* @ts-ignore */}
       <Odds />
     </main>

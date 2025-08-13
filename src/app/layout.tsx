@@ -15,13 +15,14 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="bg-slate-200">
+      <body>
+        <a href="#main" className="skip-link">Skip to main content</a>
         <Nav />
         <MiniNav />
 
         {children}
+        <Analytics />
       </body>
-      <Analytics />
     </html>
   );
 }

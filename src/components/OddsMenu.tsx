@@ -15,21 +15,21 @@ function OddsMenu() {
   const url = routes.reduce((acc, cur) => acc!.replace(cur.name, ""), pathname);
 
   return (
-    <div className="flex flex-row justify-center gap-5 text-lg">
-      {routes.map(({ name, label }) => (
-        <Link
-          key={name}
-          className={
-            pathname?.includes(name)
-              ? "text-cyan-900 font-bold underline underline-offset-1"
-              : ""
-          }
-          href={`${url}/${name}`}
-        >
-          {label}
-        </Link>
-      ))}
-    </div>
+    <nav aria-label="Odds views" className="flex flex-row justify-center gap-5 text-lg">
+      {routes.map(({ name, label }) => {
+        const isActive = pathname?.includes(name);
+        return (
+          <Link
+            key={name}
+            className={isActive ? "text-cyan-900 font-bold underline underline-offset-1" : ""}
+            href={`${url}/${name}`}
+            aria-current={isActive ? "page" : undefined}
+          >
+            {label}
+          </Link>
+        );
+      })}
+    </nav>
   );
 }
 

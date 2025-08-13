@@ -64,3 +64,30 @@
     @apply bg-background text-foreground;
   }
 }
+/* Accessibility: skip link for keyboard users */
+.skip-link {
+  position: absolute;
+  left: -999px;
+  top: 0;
+  background: white;
+  color: black;
+  padding: 0.5rem 1rem;
+  z-index: 50;
+}
+.skip-link:focus {
+  left: 0;
+}
+
+/* Focus-visible outlines for interactive elements */
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid hsl(var(--ring));
+  outline-offset: 2px;
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .animate-spin {
+    animation: none !important;
+  }
+}

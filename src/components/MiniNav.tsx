@@ -26,8 +26,8 @@ const sports = [
 ];
 const MiniNav = () => {
   return (
-    <nav className="flex flex-col items-center py-4 bg-white rounded-md shadow-md max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
-      <h2 className="text-lg md:text-2xl"> Popular:</h2>
+    <nav aria-label="Popular sports" className="flex flex-col items-center py-4 bg-white rounded-md shadow-md max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
+      <h2 className="text-lg md:text-2xl">Popular</h2>
       <ul className="flex flex-col md:flex-row md:space-x-4">
         <li
           key="upcoming"
