@@ -38,13 +38,13 @@ function PlayerPropContainer({ getPlayerProps }: PlayerPropContainerProps) {
 
           return (
             <div
-              className="m-4 sm:m-5 flex flex-col shadow-lg rounded-md overflow-hidden bg-white"
+              className="m-4 sm:m-5 flex flex-col card"
               data-cy="player-props-item"
             >
               <h2 className="text-xl sm:text-2xl px-3 sm:px-4 pt-3" data-cy="player-name">
                 {player}
               </h2>
-              <div className="flex flex-row justify-around p-3 sm:p-6 bg-white flex-wrap gap-2">
+              <div className="flex flex-row justify-around p-3 sm:p-6 flex-wrap gap-2">
                 <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 lg:grid-cols-8 grid-flow-row gap-2">
                   {odds.map((odd, idx) => (
                     <div
@@ -53,15 +53,15 @@ function PlayerPropContainer({ getPlayerProps }: PlayerPropContainerProps) {
                       data-cy="player-props-odds-item"
                     >
                       {odd.price > 0 ? (
-                        <p className="text-green-800" data-cy="odds-price">
+                        <p className="text-green-800 dark:text-green-400" data-cy="odds-price">
                           +{odd.price}
                         </p>
                       ) : (
-                        <p className="text-red-800" data-cy="odds-price">
+                        <p className="text-red-800 dark:text-red-400" data-cy="odds-price">
                           {odd.price}
                         </p>
                       )}
-                      <p className="text-cyan-700" data-cy="odds-point">
+                      <p className="text-cyan-800 dark:text-cyan-300" data-cy="odds-point">
                         {odd.name} {odd?.point}
                       </p>
                       <p className="text-base sm:text-xl" data-cy="odds-book">
