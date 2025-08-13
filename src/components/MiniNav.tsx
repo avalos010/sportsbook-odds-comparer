@@ -29,7 +29,7 @@ const MiniNav = () => {
                 replace={true}
                 className={`inline-flex items-center rounded-full border px-4 py-2 text-sm transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-cyan-400 ${
                   isActive
-                    ? "bg-cyan-600 text-white border-cyan-600"
+                    ? "bg-cyan-800 text-white border-cyan-800 dark:bg-cyan-700 dark:border-cyan-700"
                     : "text-gray-700 hover:text-cyan-700 hover:border-cyan-300"
                 }`}
                 aria-current={isActive ? "page" : undefined}
