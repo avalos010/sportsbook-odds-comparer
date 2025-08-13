@@ -26,36 +26,32 @@ const sports = [
 ];
 const MiniNav = () => {
   return (
-    <nav aria-label="Popular sports" className="flex flex-col items-center py-4 bg-white rounded-md shadow-md max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
-      <h2 className="text-lg md:text-2xl">Popular</h2>
-      <ul className="flex flex-wrap gap-2 md:flex-row md:space-x-4">
-        <li
-          key="upcoming"
-          className="text-lg text-gray-500 flex flex-row items-center mb-2 md:mb-0"
-        >
-          <Link
-            href="/"
-            replace={true}
-            className="text-lg text-gray-500 hover:text-cyan-500 transition duration-200 ease-in-out"
-          >
-            Upcoming
-          </Link>
-        </li>
-        {sports.map((sport, index) => (
-          <li
-            key={index}
-            className="text-lg text-gray-500 flex flex-row items-center mb-2 md:mb-0"
-          >
+    <nav aria-label="Popular sports" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="flex flex-col items-center py-4 bg-white/70 backdrop-blur rounded-md border shadow-sm">
+        <h2 className="text-base sm:text-lg font-medium">Popular</h2>
+        <ul className="mt-2 flex flex-wrap gap-2">
+          <li key="upcoming">
             <Link
-              href={sport.href}
+              href="/"
               replace={true}
-              className="text-lg text-gray-500 hover:text-cyan-500 transition duration-200 ease-in-out"
+              className="inline-flex items-center rounded-full border px-3 py-1 text-sm text-gray-700 hover:text-cyan-700 hover:border-cyan-300"
             >
-              {sport.name}
+              Upcoming
             </Link>
           </li>
-        ))}
-      </ul>
+          {sports.map((sport, index) => (
+            <li key={index}>
+              <Link
+                href={sport.href}
+                replace={true}
+                className="inline-flex items-center rounded-full border px-3 py-1 text-sm text-gray-700 hover:text-cyan-700 hover:border-cyan-300"
+              >
+                {sport.name}
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </div>
     </nav>
   );
 };

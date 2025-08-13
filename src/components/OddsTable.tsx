@@ -25,7 +25,7 @@ function OddsTable({ oddsItem, home, away, points, draw }: OddsTableProps) {
 
   if (!points) {
     return (
-      <section className="m-4 sm:m-5 flex flex-col shadow-lg rounded-md overflow-hidden bg-white" data-cy="odds-table">
+      <section className="m-4 sm:m-5 flex flex-col card" data-cy="odds-table">
         <div className="flex flex-row flex-wrap justify-between items-center p-3 sm:p-4 gap-2">
           <h2 className="text-2xl sm:text-3xl">
             {home_team} vs {away_team}
@@ -66,7 +66,7 @@ function OddsTable({ oddsItem, home, away, points, draw }: OddsTableProps) {
     );
   }
   return (
-    <section className="m-4 sm:m-5 flex flex-col shadow-lg rounded-md overflow-hidden bg-white">
+    <section className="m-4 sm:m-5 flex flex-col card">
       <h2 className="text-2xl sm:text-4xl px-3 sm:px-4 pt-3">
         {home_team} vs {away_team}
       </h2>

@@ -14,73 +14,81 @@ function Nav() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <nav className=" bg-cyan-600 w-full border-b-2" aria-label="Primary">
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-        <button
-          type="button"
-          data-cy="bars-icon"
-          aria-label="Open menu"
-          aria-controls="primary-navigation"
-          aria-expanded={isOpen}
-          className="text-black absolute top-0 left-3 hover:text-white"
-          onClick={() => setIsOpen(true)}
-        >
-          <Bars3Icon width={56} aria-hidden="true" className="pointer-events-none" />
-        </button>
-        <div className="flex justify-center items-center">
-          <h1 className="text-2xl md:text-4xl">SportsBooks Odds 💯</h1>
+    <header className="sticky top-0 z-40 backdrop-blur supports-[backdrop-filter]:bg-white/70 bg-white/80 border-b">
+      <nav className="w-full" aria-label="Primary">
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-14 flex items-center justify-between">
+          <button
+            type="button"
+            data-cy="bars-icon"
+            aria-label="Open menu"
+            aria-controls="primary-navigation"
+            aria-expanded={isOpen}
+            className="inline-flex items-center justify-center rounded-md p-2 text-cyan-700 hover:bg-cyan-50 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-cyan-400"
+            onClick={() => setIsOpen(true)}
+          >
+            <Bars3Icon width={24} aria-hidden="true" />
+          </button>
+          <Link href="/" className="text-xl font-semibold tracking-tight">
+            SportsBooks Odds
+          </Link>
+          <div className="w-10" />
         </div>
         {error && (
           <Snackbar
             className="absolute top-0 left-0"
-            message={error.message} //"Oops! something went wrong while loading data for the navbar!"
+            message={error.message}
             type="error"
           />
         )}
-      </div>
+      </nav>
+
       <div
-        className={`p-3 fixed -top-3 bottom-0 duration-75 transition-opacity ease-in  overflow-y-scroll z-10 bg-black/50 w-full ${
-          isOpen ? "left-0 opacity-100" : "-left-full opacity-0"
-        }`}
+        className={`fixed inset-0 z-50 transition-opacity ${isOpen ? "opacity-100" : "opacity-0 pointer-events-none"}`}
         aria-hidden={!isOpen}
-        role={isOpen ? "dialog" : undefined}
-        aria-modal={isOpen || undefined}
       >
-        <div
+        <div className="absolute inset-0 bg-black/40" onClick={() => setIsOpen(false)} />
+        <aside
           id="primary-navigation"
           role="navigation"
           aria-label="Main menu"
-          className="flex flex-col gap-4 justify-start bg-cyan-600 p-4 w-full max-w-xs h-full relative"
+          className={`absolute left-0 top-0 h-full w-full max-w-xs bg-white shadow-xl p-4 transform transition-transform ${
+            isOpen ? "translate-x-0" : "-translate-x-full"
+          }`}
         >
-          <button
-            type="button"
-            aria-label="Close menu"
-            className="text-black w-14 absolute top-3 right-3 hover:text-white"
-            onClick={() => setIsOpen(false)}
-          >
-            <XMarkIcon aria-hidden="true" className="w-14 h-14 pointer-events-none" />
-          </button>
-          {sports?.length ? (
-            sports.map((sportItem: Sport) => (
-              <Link
-                className="text-white text-lg"
-                key={sportItem.key}
-                data-cy={`${sportItem.title.toLowerCase()}-link`}
-                onClick={() => setIsOpen(false)}
-                href={`/odds/${sportItem.key}/moneyline`}
-              >
-                {sportItem.title}
-              </Link>
-            ))
-          ) : (
-            <Snackbar
-              message="Oops! it looks like no data is available!"
-              type="error"
-            />
-          )}
-        </div>
+          <div className="flex items-center justify-between mb-4">
+            <h2 className="text-lg font-medium">Leagues</h2>
+            <button
+              type="button"
+              aria-label="Close menu"
+              className="inline-flex items-center justify-center rounded-md p-2 text-cyan-700 hover:bg-cyan-50 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-cyan-400"
+              onClick={() => setIsOpen(false)}
+            >
+              <XMarkIcon aria-hidden="true" className="w-6 h-6" />
+            </button>
+          </div>
+          <div className="flex flex-col gap-2">
+            {sports?.length ? (
+              sports.map((sportItem: Sport) => (
+                <Link
+                  className="text-gray-800 hover:text-cyan-700 px-2 py-2 rounded-md hover:bg-cyan-50"
+                  key={sportItem.key}
+                  data-cy={`${sportItem.title.toLowerCase()}-link`}
+                  onClick={() => setIsOpen(false)}
+                  href={`/odds/${sportItem.key}/moneyline`}
+                >
+                  {sportItem.title}
+                </Link>
+              ))
+            ) : (
+              <Snackbar
+                message="Oops! it looks like no data is available!"
+                type="error"
+              />
+            )}
+          </div>
+        </aside>
       </div>
-    </nav>
+    </header>
   );
 }
 

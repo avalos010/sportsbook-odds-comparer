@@ -62,6 +62,8 @@
   }
   body {
     @apply bg-background text-foreground;
+    background-image: radial-gradient(1000px 400px at 0% 0%, #e0f2fe33, transparent), radial-gradient(800px 300px at 100% 0%, #f1f5f933, transparent);
+    background-attachment: fixed;
   }
 }
 /* Accessibility: skip link for keyboard users */
@@ -83,6 +85,11 @@ a:focus-visible,
 button:focus-visible {
   outline: 2px solid hsl(var(--ring));
   outline-offset: 2px;
+}
+
+/* Minimal modern cards */
+.card {
+  @apply rounded-md border bg-white shadow-sm;
 }
 
 /* Reduced motion preference */
