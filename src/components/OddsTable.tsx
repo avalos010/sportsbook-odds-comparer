@@ -25,54 +25,56 @@ function OddsTable({ oddsItem, home, away, points, draw }: OddsTableProps) {
 
   if (!points) {
     return (
-      <div className="m-5 flex flex-col shadow-lg" data-cy="odds-table">
-        <div className="flex flex-row flex-wrap justify-between p-2">
-          <h2 className="text-3xl">
+      <section className="m-4 sm:m-5 flex flex-col shadow-lg rounded-md overflow-hidden bg-white" data-cy="odds-table">
+        <div className="flex flex-row flex-wrap justify-between items-center p-3 sm:p-4 gap-2">
+          <h2 className="text-2xl sm:text-3xl">
             {home_team} vs {away_team}
           </h2>
           {supportsPlayerProps && (
             <Link
               data-cy="player-props-link"
               href={`/odds/playerProps/?sport=${oddsItem.sport_key}&event=${oddsItem.id}`}
-              className="text-lg p-2 text-cyan-600 w-max"
+              className="text-base sm:text-lg p-2 text-cyan-600 w-max"
             >
               Player Props
             </Link>
           )}
         </div>
 
-        <p className="text-cyan-700 text-sm">{startTime}</p>
-        <span>{home_team}</span>
-        <div className="flex flex-row justify-around p-6 bg-white flex-wrap">
+        <p className="text-cyan-700 text-xs sm:text-sm px-3 sm:px-4 pb-2">{startTime}</p>
+        <div className="px-3 sm:px-4 pb-2">
+          <h3 className="text-base sm:text-lg font-medium">{home_team}</h3>
+        </div>
+        <div className="flex flex-row justify-around p-3 sm:p-6 bg-white flex-wrap gap-2">
           {home}
         </div>
         {draw && (
-          <div>
-            <span>Draw</span>
-            <div className="flex flex-row justify-around p-6 bg-white flex-wrap">
+          <div className="px-3 sm:px-4 pb-2">
+            <h3 className="text-base sm:text-lg font-medium">Draw</h3>
+            <div className="flex flex-row justify-around p-3 sm:p-6 bg-white flex-wrap gap-2">
               {draw}
             </div>
           </div>
         )}
-        <div>
-          <span>{away_team}</span>
-          <div className="flex flex-row justify-around p-6 bg-white flex-wrap">
+        <div className="px-3 sm:px-4 pb-2">
+          <h3 className="text-base sm:text-lg font-medium">{away_team}</h3>
+          <div className="flex flex-row justify-around p-3 sm:p-6 bg-white flex-wrap gap-2">
             {away}
           </div>
         </div>
-      </div>
+      </section>
     );
   }
   return (
-    <div className="m-5 flex flex-col shadow-lg">
-      <h2 className="text-4xl">
+    <section className="m-4 sm:m-5 flex flex-col shadow-lg rounded-md overflow-hidden bg-white">
+      <h2 className="text-2xl sm:text-4xl px-3 sm:px-4 pt-3">
         {home_team} vs {away_team}
       </h2>
-      <p className="text-cyan-700 text-base">{startTime}</p>
-      <div className="flex flex-row justify-around p-6 bg-white flex-wrap">
+      <p className="text-cyan-700 text-xs sm:text-base px-3 sm:px-4 pb-2">{startTime}</p>
+      <div className="flex flex-row justify-around p-3 sm:p-6 bg-white flex-wrap gap-2">
         {points}
       </div>
-    </div>
+    </section>
   );
 }
 

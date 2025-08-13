@@ -14,28 +14,30 @@ function Nav() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <nav className=" bg-cyan-600 w-full border-b-2 p-4 relative" aria-label="Primary">
-      <button
-        type="button"
-        data-cy="bars-icon"
-        aria-label="Open menu"
-        aria-controls="primary-navigation"
-        aria-expanded={isOpen}
-        className="text-black absolute top-0 left-3 hover:text-white"
-        onClick={() => setIsOpen(true)}
-      >
-        <Bars3Icon width={56} aria-hidden="true" className="pointer-events-none" />
-      </button>
-      <div className="flex justify-center items-center">
-        <h1 className="text-2xl md:text-4xl">SportsBooks Odds 💯</h1>
+    <nav className=" bg-cyan-600 w-full border-b-2" aria-label="Primary">
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+        <button
+          type="button"
+          data-cy="bars-icon"
+          aria-label="Open menu"
+          aria-controls="primary-navigation"
+          aria-expanded={isOpen}
+          className="text-black absolute top-0 left-3 hover:text-white"
+          onClick={() => setIsOpen(true)}
+        >
+          <Bars3Icon width={56} aria-hidden="true" className="pointer-events-none" />
+        </button>
+        <div className="flex justify-center items-center">
+          <h1 className="text-2xl md:text-4xl">SportsBooks Odds 💯</h1>
+        </div>
+        {error && (
+          <Snackbar
+            className="absolute top-0 left-0"
+            message={error.message} //"Oops! something went wrong while loading data for the navbar!"
+            type="error"
+          />
+        )}
       </div>
-      {error && (
-        <Snackbar
-          className="absolute top-0 left-0"
-          message={error.message} //"Oops! something went wrong while loading data for the navbar!"
-          type="error"
-        />
-      )}
       <div
         className={`p-3 fixed -top-3 bottom-0 duration-75 transition-opacity ease-in  overflow-y-scroll z-10 bg-black/50 w-full ${
           isOpen ? "left-0 opacity-100" : "-left-full opacity-0"
@@ -48,7 +50,7 @@ function Nav() {
           id="primary-navigation"
           role="navigation"
           aria-label="Main menu"
-          className="flex flex-col gap-4 justify-center  bg-cyan-600 p-3 -ml-3 md:w-4/12 w-3/4"
+          className="flex flex-col gap-4 justify-start bg-cyan-600 p-4 w-full max-w-xs h-full relative"
         >
           <button
             type="button"
@@ -61,7 +63,7 @@ function Nav() {
           {sports?.length ? (
             sports.map((sportItem: Sport) => (
               <Link
-                className="text-white text-xl"
+                className="text-white text-lg"
                 key={sportItem.key}
                 data-cy={`${sportItem.title.toLowerCase()}-link`}
                 onClick={() => setIsOpen(false)}

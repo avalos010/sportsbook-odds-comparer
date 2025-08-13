@@ -47,14 +47,14 @@ export function ComboBox({ list, onSelect }: ComboBoxProps) {
           variant="outline"
           role="combobox"
           aria-expanded={open}
-          className="w-[200px] justify-between"
+          className="w-full sm:w-[240px] justify-between"
         >
           {value
             ? list.find((item) => item.value === value)?.label
             : "Select item..."}
         </Button>
       </PopoverTrigger>
-      <PopoverContent className="w-[200px] p-0">
+      <PopoverContent className="w-screen max-w-xs sm:w-[240px] p-0">
         <Command>
           {/* <CommandInput placeholder="Search framework..." /> */}
           <CommandList>

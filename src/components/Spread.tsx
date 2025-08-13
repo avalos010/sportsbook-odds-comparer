@@ -3,7 +3,7 @@ import { Bookmaker, Market, Odds, Outcome } from "../../lib/api";
 
 const Spread = ({ team, odds, id }: SpreadProps) => {
   return (
-    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 lg:grid-cols-8 grid-flow-row">
+    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 lg:grid-cols-8 grid-flow-row gap-2">
       {odds.map((odd: Odds) => {
         //TODO! Pass in a single item instead of passing whole list to each child.
         if (odd.id === id) {
@@ -17,7 +17,7 @@ const Spread = ({ team, odds, id }: SpreadProps) => {
                     return (
                       <div
                         key={`${outcome}${market}`}
-                        className="grid grid-flow-row p-3"
+                        className="grid grid-flow-row p-2 sm:p-3 rounded border"
                         data-cy="odds-ml-item"
                       >
                         {outcome.price > 0 ? (
@@ -30,7 +30,7 @@ const Spread = ({ team, odds, id }: SpreadProps) => {
                             ? `+${outcome.point}`
                             : outcome.point}
                         </p>
-                        <p className="text-xl">{title}</p>
+                        <p className="text-base sm:text-xl">{title}</p>
                       </div>
                     );
                   }

@@ -26,29 +26,29 @@ function PlayerPropContainer({ getPlayerProps }: PlayerPropContainerProps) {
   };
 
   if (!playerProps) {
-    return <h3 className="text-3xl">Please select player props</h3>;
+    return <h3 className="text-2xl sm:text-3xl">Please select player props</h3>;
   }
 
   return (
-    <div className="w-full" data-cy="playerprop-container">
-      <h2 className="text-5xl capitalize text-center m-7">{propMarket}</h2>
+    <div className="w-full px-4 sm:px-6 lg:px-8" data-cy="playerprop-container">
+      <h2 className="text-3xl sm:text-5xl capitalize text-center m-4 sm:m-7">{propMarket}</h2>
       {playerProps &&
         Object.entries(playerProps).map((details) => {
           const [player, odds] = details;
 
           return (
             <div
-              className="m-5 flex flex-col shadow-lg"
+              className="m-4 sm:m-5 flex flex-col shadow-lg rounded-md overflow-hidden bg-white"
               data-cy="player-props-item"
             >
-              <h2 className="text-2xl" data-cy="player-name">
+              <h2 className="text-xl sm:text-2xl px-3 sm:px-4 pt-3" data-cy="player-name">
                 {player}
               </h2>
-              <div className="flex flex-row justify-around p-6 bg-white flex-wrap">
-                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 lg:grid-cols-8 grid-flow-row">
+              <div className="flex flex-row justify-around p-3 sm:p-6 bg-white flex-wrap gap-2">
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 lg:grid-cols-8 grid-flow-row gap-2">
                   {odds.map((odd, idx) => (
                     <div
-                      className="flex flex-col items-center p-3"
+                      className="flex flex-col items-center p-2 sm:p-3 rounded border"
                       key={idx + odd.name}
                       data-cy="player-props-odds-item"
                     >
@@ -64,7 +64,7 @@ function PlayerPropContainer({ getPlayerProps }: PlayerPropContainerProps) {
                       <p className="text-cyan-700" data-cy="odds-point">
                         {odd.name} {odd?.point}
                       </p>
-                      <p className="text-xl" data-cy="odds-book">
+                      <p className="text-base sm:text-xl" data-cy="odds-book">
                         {odd.book}
                       </p>
                     </div>

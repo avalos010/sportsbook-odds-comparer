@@ -15,13 +15,13 @@ function OddsMenu() {
   const url = routes.reduce((acc, cur) => acc!.replace(cur.name, ""), pathname);
 
   return (
-    <nav aria-label="Odds views" className="flex flex-row justify-center gap-5 text-lg">
+    <nav aria-label="Odds views" className="flex flex-row justify-center gap-3 sm:gap-5 text-base sm:text-lg">
       {routes.map(({ name, label }) => {
         const isActive = pathname?.includes(name);
         return (
           <Link
             key={name}
-            className={isActive ? "text-cyan-900 font-bold underline underline-offset-1" : ""}
+            className={`${isActive ? "text-cyan-900 font-bold underline underline-offset-1" : "text-cyan-700"} px-3 py-1 rounded-md`}
             href={`${url}/${name}`}
             aria-current={isActive ? "page" : undefined}
           >
