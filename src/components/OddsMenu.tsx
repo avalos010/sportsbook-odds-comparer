@@ -21,6 +21,7 @@ function OddsMenu() {
         return (
           <Link
             key={name}
+            data-cy={`odds-${name}-link`}
             className={`${isActive ? "text-cyan-900 font-bold underline underline-offset-1" : "text-cyan-700"} px-3 py-1 rounded-md`}
             href={`${url}/${name}`}
             aria-current={isActive ? "page" : undefined}
