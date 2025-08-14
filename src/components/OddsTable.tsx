@@ -34,14 +34,14 @@ function OddsTable({ oddsItem, home, away, points, draw }: OddsTableProps) {
             <Link
               data-cy="player-props-link"
               href={`/odds/playerProps/?sport=${oddsItem.sport_key}&event=${oddsItem.id}`}
-              className="text-base sm:text-lg p-2 text-cyan-800 hover:text-cyan-900 w-max"
+              className="text-base sm:text-lg p-2 text-cyan-800 hover:text-cyan-900 dark:text-cyan-300 dark:hover:text-cyan-200 w-max"
             >
               Player Props
             </Link>
           )}
         </div>
 
-        <p className="text-cyan-800 text-xs sm:text-sm px-3 sm:px-4 pb-2">{startTime}</p>
+        <p className="text-cyan-800 dark:text-cyan-300 text-xs sm:text-sm px-3 sm:px-4 pb-2">{startTime}</p>
         <div className="px-3 sm:px-4 pb-2">
           <h3 className="text-base sm:text-lg font-medium">{home_team}</h3>
         </div>
@@ -70,7 +70,7 @@ function OddsTable({ oddsItem, home, away, points, draw }: OddsTableProps) {
       <h2 className="text-2xl sm:text-4xl px-3 sm:px-4 pt-3">
         {home_team} vs {away_team}
       </h2>
-      <p className="text-cyan-800 text-xs sm:text-base px-3 sm:px-4 pb-2">{startTime}</p>
+      <p className="text-cyan-800 dark:text-cyan-300 text-xs sm:text-base px-3 sm:px-4 pb-2">{startTime}</p>
       <div className="flex flex-row justify-around p-3 sm:p-6 flex-wrap gap-2">
         {points}
       </div>
