@@ -16,13 +16,13 @@ const Moneyline = ({ team, odds, id }: MoneylineProps) => {
                   return (
                     <div
                       key={`${outcome}${market}`}
-                      className="grid grid-flow-row p-2 sm:p-3 rounded border"
+                      className="grid grid-flow-row p-2 sm:p-3 rounded"
                       data-cy="odds-ml-item"
                     >
                       {outcome.price > 0 ? (
-                        <span className="text-green-800">+{outcome.price} ML</span>
+                        <span className="text-green-800 dark:text-green-400">+{outcome.price} ML</span>
                       ) : (
-                        <span className="text-red-800">{outcome.price} ML</span>
+                        <span className="text-red-800 dark:text-red-400">{outcome.price} ML</span>
                       )}
                       <span className="text-base sm:text-xl">{title}</span>
                     </div>

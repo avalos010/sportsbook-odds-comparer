@@ -17,15 +17,15 @@ const Spread = ({ team, odds, id }: SpreadProps) => {
                     return (
                       <div
                         key={`${outcome}${market}`}
-                        className="grid grid-flow-row p-2 sm:p-3 rounded border"
+                        className="grid grid-flow-row p-2 sm:p-3 rounded"
                         data-cy="odds-ml-item"
                       >
                         {outcome.price > 0 ? (
-                          <p className="text-green-800">+{outcome.price}</p>
+                          <p className="text-green-800 dark:text-green-400">+{outcome.price}</p>
                         ) : (
-                          <p className="text-red-800">{outcome.price}</p>
+                          <p className="text-red-800 dark:text-red-400">{outcome.price}</p>
                         )}
-                        <p className="text-cyan-700">
+                        <p className="text-cyan-800 dark:text-cyan-300">
                           {outcome.point && outcome.point > 0
                             ? `+${outcome.point}`
                             : outcome.point}
