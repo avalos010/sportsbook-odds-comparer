@@ -11,13 +11,17 @@ const Points = ({ odd }: PointsProps) => {
             return (
               <div
                 key={`${outcome}${market}-${odd.id}-${idx}`}
-                className="grid grid-flow-row p-2 sm:p-3 rounded"
+                className="grid grid-flow-row p-2 sm:p-3 text-center"
                 data-cy="odds-points-item"
               >
                 {outcome.price > 0 ? (
-                  <p className="text-green-800 dark:text-green-400">+{outcome.price}</p>
+                  <p className="text-green-800 dark:text-green-400">
+                    +{outcome.price}
+                  </p>
                 ) : (
-                  <p className="text-red-800 dark:text-red-400">{outcome.price}</p>
+                  <p className="text-red-800 dark:text-red-400">
+                    {outcome.price}
+                  </p>
                 )}
                 <p className="text-cyan-800 dark:text-cyan-300">
                   {outcome.name} {outcome.point}

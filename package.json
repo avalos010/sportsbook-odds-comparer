@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "test": "yarn cypress run  --spec cypress/e2e/sportsbookodds.cy.ts"
+    "test": "npx cypress run --spec cypress/e2e/sportsbookodds.cy.ts"
   },
   "dependencies": {
     "@heroicons/react": "^2.0.18",
