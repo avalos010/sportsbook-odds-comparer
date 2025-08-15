@@ -3,6 +3,8 @@ import { ReactNode, useEffect, useState } from "react";
 import { Odds } from "../../lib/api";
 import Link from "next/link";
 
+const supportedPlayerPropsLeagues = ["nba", "nfl", "nhl", "mlb"];
+
 function OddsTable({ oddsItem, home, away, points, draw }: OddsTableProps) {
   const { away_team, bookmakers, home_team, sport_key } = oddsItem;
   const startTime = new Date(oddsItem.commence_time).toLocaleString("en-US", {
@@ -10,7 +12,6 @@ function OddsTable({ oddsItem, home, away, points, draw }: OddsTableProps) {
     timeStyle: "short",
   });
 
-  const supportedPlayerPropsLeagues = ["nba", "nfl", "nhl", "mlb"];
   const [supportsPlayerProps, setSupportsPlayerProps] = useState(false);
 
   useEffect(() => {
@@ -19,7 +20,7 @@ function OddsTable({ oddsItem, home, away, points, draw }: OddsTableProps) {
         setSupportsPlayerProps(true);
       }
     });
-  }, []);
+  }, [sport_key]);
 
   //find out if player props are supported for this sport using oddsItem.sport_key and compare it to see if any substring from supportedPlayerPropsLeagues
 
@@ -41,7 +42,9 @@ function OddsTable({ oddsItem, home, away, points, draw }: OddsTableProps) {
           )}
         </div>
 
-        <p className="text-cyan-800 dark:text-cyan-300 text-xs sm:text-sm px-3 sm:px-4 pb-2">{startTime}</p>
+        <p className="text-cyan-800 dark:text-cyan-300 text-xs sm:text-sm px-3 sm:px-4 pb-2">
+          {startTime}
+        </p>
         <div className="px-3 sm:px-4 pb-2">
           <h3 className="text-base sm:text-lg font-medium">{home_team}</h3>
         </div>
@@ -70,7 +73,9 @@ function OddsTable({ oddsItem, home, away, points, draw }: OddsTableProps) {
       <h2 className="text-2xl sm:text-4xl px-3 sm:px-4 pt-3">
         {home_team} vs {away_team}
       </h2>
-      <p className="text-cyan-800 dark:text-cyan-300 text-xs sm:text-base px-3 sm:px-4 pb-2">{startTime}</p>
+      <p className="text-cyan-800 dark:text-cyan-300 text-xs sm:text-base px-3 sm:px-4 pb-2">
+        {startTime}
+      </p>
       <div className="flex flex-row justify-around p-3 sm:p-6 flex-wrap gap-2">
         {points}
       </div>

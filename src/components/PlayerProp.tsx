@@ -5,11 +5,11 @@ function PlayerProp({ bookmaker }: PlayerPropProps) {
   return (
     <div>
       <h2>{bookmaker.title}</h2>
-      {bookmaker.markets.map((market) => {
+      {bookmaker.markets.map((market, marketIndex) => {
         return (
-          <div>
-            {market.outcomes.map((outcome) => (
-              <div>
+          <div key={`market-${marketIndex}`}>
+            {market.outcomes.map((outcome, outcomeIndex) => (
+              <div key={`outcome-${marketIndex}-${outcomeIndex}`}>
                 <p>{outcome.name}</p>
                 <p>{outcome.description}</p>
                 <p>{outcome.point}</p>

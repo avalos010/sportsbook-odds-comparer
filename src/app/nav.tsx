@@ -45,15 +45,20 @@ function Nav() {
 
       {isOpen && (
         <div className="fixed inset-0 z-50">
-          <div className="absolute inset-0 bg-black/70" onClick={() => setIsOpen(false)} />
+          <div
+            className="absolute inset-0 bg-black/70"
+            onClick={() => setIsOpen(false)}
+          />
           <aside
             id="primary-navigation"
             role="navigation"
             aria-label="Main menu"
-            className="absolute left-0 top-0 h-full w-full max-w-sm bg-white/95 dark:bg-neutral-900/95 backdrop-blur-sm border-r border-slate-200 dark:border-neutral-800 shadow-xl p-4 transform translate-x-0 z-50"
+            className="absolute left-0 top-0 h-full w-full max-w-sm bg-white/95 dark:bg-neutral-900/95 backdrop-blur-sm border-r border-slate-200 dark:border-neutral-800 shadow-xl p-4 transform translate-x-0 z-50 overflow-y-auto"
           >
             <div className="flex items-center justify-between mb-2">
-              <h2 className="text-base font-semibold text-slate-900 dark:text-slate-100">Leagues</h2>
+              <h2 className="text-base font-semibold text-slate-900 dark:text-slate-100">
+                Leagues
+              </h2>
               <button
                 type="button"
                 aria-label="Close menu"

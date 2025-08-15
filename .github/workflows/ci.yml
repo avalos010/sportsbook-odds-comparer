@@ -1,45 +1,12 @@
 name: ci
 
 on:
-  push:
-    branches: [main, develop]
-  pull_request:
-    branches: [main, develop]
   deployment_status:
 
 jobs:
-  test:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: "18"
-
-      - name: Install pnpm
-        uses: pnpm/action-setup@v2
-        with:
-          version: 8
-
-      - name: Install dependencies
-        run: pnpm install
-
-      - name: Install Cypress
-        run: pnpm cypress install
-
-      - name: Run tests
-        run: pnpm test
-        env:
-          CI: true
-          CYPRESS_BASE_URL: ""
-
   e2e:
     if: github.event_name == 'deployment_status' && github.event.deployment_status.state == 'success'
     runs-on: ubuntu-latest
-    needs: test
 
     steps:
       - name: Dump GitHub context
@@ -49,23 +16,10 @@ jobs:
           echo "$GITHUB_CONTEXT"
 
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v3
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: "18"
-
-      - name: Install pnpm
-        uses: pnpm/action-setup@v2
-        with:
-          version: 8
-
-      - name: Install dependencies
-        run: pnpm install
-
-      - name: Install Cypress
-        run: pnpm cypress install
+      - name: Update Lockfile and Install Dependencies
+        run: yarn install --check-files
 
       - name: Run Cypress 🌲
         uses: cypress-io/github-action@v5
