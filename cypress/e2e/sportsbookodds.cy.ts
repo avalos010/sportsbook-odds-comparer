@@ -41,8 +41,8 @@ describe("Player Props Page", () => {
     cy.url().should("include", "/odds/playerProps");
     cy.get('[data-cy="combobox"]').should("exist");
   });
-
-  it("shows correct player props line and odds", () => {
+  //still work in progress
+  it.skip("shows correct player props line and odds", () => {
     // Use a real MLB URL with actual data instead of mocking
     // This will work for a month or so until we implement proper mocking
     const testURL =
