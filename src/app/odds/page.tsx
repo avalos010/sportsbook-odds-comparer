@@ -14,8 +14,8 @@ async function Odds() {
   }
 
   return (
-    <main>
-      <h1 className="text-center text-4xl">Upcoming</h1>
+    <main id="main" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h1 className="text-center text-3xl sm:text-4xl">Upcoming</h1>
       {odds.map((odd) => {
         return (
           <div key={odd.id}>

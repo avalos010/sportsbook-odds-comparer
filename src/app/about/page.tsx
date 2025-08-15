@@ -1,12 +1,11 @@
 function About() {
   return (
-    <div>
-      <h1 className="text-5xl">About</h1>
-      <p className="text-base height">
-        This is just a website that shows the current sportsbook odds accross
-        all platform for every sport
+    <main id="main" className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+      <h1 className="text-4xl sm:text-5xl">About</h1>
+      <p className="text-base mt-3">
+        This website shows current sportsbook odds across platforms for many sports.
       </p>
-    </div>
+    </main>
   );
 }
 

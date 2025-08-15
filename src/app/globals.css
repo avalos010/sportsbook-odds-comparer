@@ -32,9 +32,9 @@
   .dark {
     --background: 240 10% 3.9%;
     --foreground: 0 0% 98%;
-    --card: 240 10% 3.9%;
+    --card: 240 10% 6%;
     --card-foreground: 0 0% 98%;
-    --popover: 240 10% 3.9%;
+    --popover: 240 10% 6%;
     --popover-foreground: 0 0% 98%;
     --primary: 0 0% 98%;
     --primary-foreground: 240 5.9% 10%;
@@ -62,5 +62,46 @@
   }
   body {
     @apply bg-background text-foreground;
+  }
+}
+/* Accessibility: skip link for keyboard users */
+.skip-link {
+  position: absolute;
+  left: -999px;
+  top: 0;
+  background: white;
+  color: black;
+  padding: 0.5rem 1rem;
+  z-index: 50;
+}
+.skip-link:focus {
+  left: 0;
+}
+
+/* Focus-visible outlines for interactive elements */
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid hsl(var(--ring));
+  outline-offset: 2px;
+}
+
+/* Minimal modern cards */
+.card {
+  @apply rounded-xl border bg-white shadow-sm dark:bg-[hsl(240_10%_6%)] dark:border-[hsl(240_3.7%_15.9%)] transition-shadow hover:shadow-md;
+}
+
+/* Hide scrollbar when used on horizontal scrollers */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .animate-spin {
+    animation: none !important;
   }
 }

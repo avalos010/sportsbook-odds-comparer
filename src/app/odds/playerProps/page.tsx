@@ -18,18 +18,20 @@ const playerProps = async ({ searchParams }: PlayerPropsParams) => {
     );
 
     return (
-      <div className="flex flex-col items-center">
-        <h2 className="text-2xl mb-4">Player Props </h2>
-        <ComboBoxClient marketsList={marketsList} />
-        <PlayerPropContainer getPlayerProps={getPlayerProps} />
-      </div>
+      <main id="main" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+        <div className="flex flex-col items-center gap-4 py-4">
+          <h2 className="text-2xl">Player Props</h2>
+          <ComboBoxClient marketsList={marketsList} />
+          <PlayerPropContainer getPlayerProps={getPlayerProps} />
+        </div>
+      </main>
     );
   }
 
   return (
-    <div className="">
+    <main id="main" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
       <p>Player props not supported</p>
-    </div>
+    </main>
   );
 };
 

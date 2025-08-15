@@ -2,6 +2,9 @@ import Nav from "./nav";
 import { Analytics } from "@vercel/analytics/react";
 import "./globals.css";
 import MiniNav from "@/components/MiniNav";
+import { Inter } from "next/font/google";
+
+const inter = Inter({ subsets: ["latin"], display: "swap" });
 
 export const metadata = {
   title: "SportsBook Odds Comparer",
@@ -15,13 +18,14 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="bg-slate-200">
+      <body className={inter.className}>
+        <a href="#main" className="skip-link">Skip to main content</a>
         <Nav />
         <MiniNav />
 
         {children}
+        <Analytics />
       </body>
-      <Analytics />
     </html>
   );
 }
