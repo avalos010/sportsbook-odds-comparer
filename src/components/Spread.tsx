@@ -1,5 +1,7 @@
 "use client";
 import { Bookmaker, Market, Odds, Outcome } from "../../lib/api";
+import { findBestOdds, isBestSpreadOdds } from "../../lib/utils";
+import { StarFilledIcon } from "@radix-ui/react-icons";
 
 const Spread = ({ team, odds, id }: SpreadProps) => {
   return (
@@ -7,6 +9,8 @@ const Spread = ({ team, odds, id }: SpreadProps) => {
       {odds.map((odd: Odds) => {
         //TODO! Pass in a single item instead of passing whole list to each child.
         if (odd.id === id) {
+          const bestOdds = findBestOdds(odd.bookmakers, team);
+
           return odd.bookmakers.map((bookmaker: Bookmaker) => {
             const { title } = bookmaker;
             return bookmaker.markets.map((market: Market) => {
@@ -14,12 +18,26 @@ const Spread = ({ team, odds, id }: SpreadProps) => {
                 .filter((outcome: Outcome) => outcome.name === team)
                 .map((outcome: Outcome) => {
                   if (outcome.name === team) {
+                    const isBest = isBestSpreadOdds(
+                      outcome,
+                      team,
+                      title,
+                      bestOdds.spread
+                    );
+
                     return (
                       <div
                         key={`${outcome}${market}`}
-                        className="grid grid-flow-row p-2 sm:p-3 text-center"
+                        className="grid grid-flow-row p-3 relative text-center"
                         data-cy="odds-ml-item"
                       >
+                        {isBest && (
+                          <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10">
+                            <div className="text-cyan-800">
+                              <StarFilledIcon className="w-5 h-5" />
+                            </div>
+                          </div>
+                        )}
                         {outcome.price > 0 ? (
                           <p className="text-green-800 dark:text-green-400">
                             +{outcome.price}
