@@ -1,6 +1,7 @@
 "use client";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState, useCallback } from "react";
+import GameHeader from "./GameHeader";
 
 function PlayerPropContainer({ getPlayerProps }: PlayerPropContainerProps) {
   const searchParams = useSearchParams();
@@ -12,11 +13,21 @@ function PlayerPropContainer({ getPlayerProps }: PlayerPropContainerProps) {
   );
 
   const [propMarket, setPropMarket] = useState<string | null>(null);
+  const [gameInfo, setGameInfo] = useState<{
+    homeTeam: string;
+    awayTeam: string;
+    commenceTime: string;
+  } | null>(null);
 
   const updatePlayerProps = useCallback(async () => {
     const data = await getPlayerProps(sport, eventId, markets);
     if (data?.bookmakers) {
       setPropMarket(data.bookmakers[0]?.markets[0].key.replaceAll("_", " "));
+      setGameInfo({
+        homeTeam: data.home_team,
+        awayTeam: data.away_team,
+        commenceTime: data.commence_time,
+      });
       const reformatted = reformatPlayerProps(data);
       setPlayerProps(reformatted);
     }
@@ -35,6 +46,13 @@ function PlayerPropContainer({ getPlayerProps }: PlayerPropContainerProps) {
       <h2 className="text-3xl sm:text-5xl capitalize text-center m-4 sm:m-7">
         {propMarket}
       </h2>
+      {gameInfo && (
+        <GameHeader
+          homeTeam={gameInfo.homeTeam}
+          awayTeam={gameInfo.awayTeam}
+          commenceTime={gameInfo.commenceTime}
+        />
+      )}
       {playerProps &&
         Object.entries(playerProps).map((details) => {
           const [player, odds] = details;
@@ -51,11 +69,11 @@ function PlayerPropContainer({ getPlayerProps }: PlayerPropContainerProps) {
               >
                 {player}
               </h2>
-              <div className="flex flex-row justify-around p-3 sm:p-6 flex-wrap gap-2">
+              <div className="px-3 sm:px-4 pb-2">
                 <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 lg:grid-cols-8 grid-flow-row gap-2">
                   {odds.map((odd, idx) => (
                     <div
-                      className="flex flex-col items-center p-2 sm:p-3 rounded border"
+                      className="grid grid-flow-row p-3 relative text-center"
                       key={idx + odd.name}
                       data-cy="player-props-odds-item"
                     >

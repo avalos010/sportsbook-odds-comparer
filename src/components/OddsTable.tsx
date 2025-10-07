@@ -2,15 +2,12 @@
 import { ReactNode, useEffect, useState } from "react";
 import { Odds } from "../../lib/api";
 import Link from "next/link";
+import GameHeader from "./GameHeader";
 
 const supportedPlayerPropsLeagues = ["nba", "nfl", "nhl", "mlb"];
 
 function OddsTable({ oddsItem, home, away, points, draw }: OddsTableProps) {
   const { away_team, bookmakers, home_team, sport_key } = oddsItem;
-  const startTime = new Date(oddsItem.commence_time).toLocaleString("en-US", {
-    dateStyle: "medium",
-    timeStyle: "short",
-  });
 
   const [supportsPlayerProps, setSupportsPlayerProps] = useState(false);
 
@@ -27,24 +24,24 @@ function OddsTable({ oddsItem, home, away, points, draw }: OddsTableProps) {
   if (!points) {
     return (
       <section className="m-4 sm:m-5 flex flex-col card" data-cy="odds-table">
-        <div className="flex flex-row flex-wrap justify-between items-center p-3 sm:p-4 gap-2">
-          <h2 className="text-2xl sm:text-3xl">
-            {home_team} vs {away_team}
-          </h2>
+        <div className="p-3 sm:p-4">
+          <GameHeader
+            homeTeam={home_team}
+            awayTeam={away_team}
+            commenceTime={oddsItem.commence_time}
+          />
           {supportsPlayerProps && (
-            <Link
-              data-cy="player-props-link"
-              href={`/odds/playerProps/?sport=${oddsItem.sport_key}&event=${oddsItem.id}`}
-              className="text-base sm:text-lg p-2 text-cyan-800 hover:text-cyan-900 dark:text-cyan-300 dark:hover:text-cyan-200 w-max"
-            >
-              Player Props
-            </Link>
+            <div className="flex justify-center mt-3">
+              <Link
+                data-cy="player-props-link"
+                href={`/odds/playerProps/?sport=${oddsItem.sport_key}&event=${oddsItem.id}`}
+                className="bg-cyan-600 hover:bg-cyan-700 text-white font-medium py-1.5 px-3 rounded-md shadow-sm hover:shadow-md transition-all duration-200 text-xs sm:text-sm"
+              >
+                Player Props
+              </Link>
+            </div>
           )}
         </div>
-
-        <p className="text-cyan-800 dark:text-cyan-300 text-xs sm:text-sm px-3 sm:px-4 pb-2">
-          {startTime}
-        </p>
         <div className="px-3 sm:px-4 pb-2">
           <h3 className="text-base sm:text-lg font-medium">{home_team}</h3>
         </div>
@@ -70,12 +67,13 @@ function OddsTable({ oddsItem, home, away, points, draw }: OddsTableProps) {
   }
   return (
     <section className="m-4 sm:m-5 flex flex-col card">
-      <h2 className="text-2xl sm:text-4xl px-3 sm:px-4 pt-3">
-        {home_team} vs {away_team}
-      </h2>
-      <p className="text-cyan-800 dark:text-cyan-300 text-xs sm:text-base px-3 sm:px-4 pb-2">
-        {startTime}
-      </p>
+      <div className="px-3 sm:px-4 pt-3">
+        <GameHeader
+          homeTeam={home_team}
+          awayTeam={away_team}
+          commenceTime={oddsItem.commence_time}
+        />
+      </div>
       <div className="flex flex-row justify-around p-3 sm:p-6 flex-wrap gap-2">
         {points}
       </div>
