@@ -10,14 +10,14 @@ const Page = async ({ params }: { params: Promise<{ sport: string }> }) => {
   const sport = resolvedParams?.sport;
   
   if (!sport) {
-    return <h2 className="text-3xl text-center">No sport specified!</h2>;
+    return <h2 className="text-3xl text-center text-black dark:text-slate-100">No sport specified!</h2>;
   }
   
   const league = sport.replaceAll("_", " ").toUpperCase();
   const odds: Odds[] = (await getSpreadOdds(sport)) ?? [];
 
   if (!odds.length) {
-    return <h2 className="text-3xl text-center">No Odds available!</h2>;
+    return <h2 className="text-3xl text-center text-black dark:text-slate-100">No Odds available!</h2>;
   }
 
   return (

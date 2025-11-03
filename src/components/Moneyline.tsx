@@ -46,7 +46,7 @@ const Moneyline = ({ team, odds, id }: MoneylineProps) => {
                           {outcome.price} ML
                         </span>
                       )}
-                      <span className="text-base sm:text-xl">{title}</span>
+                      <span className="text-base sm:text-xl text-black dark:text-slate-100">{title}</span>
                     </div>
                   );
                 });

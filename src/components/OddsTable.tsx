@@ -43,21 +43,21 @@ function OddsTable({ oddsItem, home, away, points, draw }: OddsTableProps) {
           )}
         </div>
         <div className="px-3 sm:px-4 pb-2">
-          <h3 className="text-base sm:text-lg font-medium">{home_team}</h3>
+          <h3 className="text-base sm:text-lg font-medium text-black dark:text-slate-100">{home_team}</h3>
         </div>
         <div className="flex flex-row justify-around p-3 sm:p-6 flex-wrap gap-2">
           {home}
         </div>
         {draw && (
           <div className="px-3 sm:px-4 pb-2">
-            <h3 className="text-base sm:text-lg font-medium">Draw</h3>
+            <h3 className="text-base sm:text-lg font-medium text-black dark:text-slate-100">Draw</h3>
             <div className="flex flex-row justify-around p-3 sm:p-6 flex-wrap gap-2">
               {draw}
             </div>
           </div>
         )}
         <div className="px-3 sm:px-4 pb-2">
-          <h3 className="text-base sm:text-lg font-medium">{away_team}</h3>
+          <h3 className="text-base sm:text-lg font-medium text-black dark:text-slate-100">{away_team}</h3>
           <div className="flex flex-row justify-around p-3 sm:p-6 flex-wrap gap-2">
             {away}
           </div>

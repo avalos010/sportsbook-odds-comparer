@@ -52,7 +52,7 @@ const Spread = ({ team, odds, id }: SpreadProps) => {
                             ? `+${outcome.point}`
                             : outcome.point}
                         </p>
-                        <p className="text-base sm:text-xl">{title}</p>
+                        <p className="text-base sm:text-xl text-black dark:text-slate-100">{title}</p>
                       </div>
                     );
                   }

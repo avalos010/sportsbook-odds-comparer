@@ -6,7 +6,7 @@ export default function GameHeader({
 }: GameHeaderProps) {
   return (
     <div className={`text-center mb-6 ${className}`}>
-      <h3 className="text-2xl sm:text-3xl font-bold mb-2">
+      <h3 className="text-2xl sm:text-3xl font-bold mb-2 text-black dark:text-slate-100">
         {awayTeam} vs {homeTeam}
       </h3>
       <p className="text-cyan-800 dark:text-cyan-300 text-sm sm:text-base">

@@ -44,7 +44,7 @@ const Points = ({ odd }: PointsProps) => {
                 <p className="text-cyan-800 dark:text-cyan-300">
                   {outcome.name} {outcome.point}
                 </p>
-                <p className="text-base sm:text-xl">{title}</p>
+                <p className="text-base sm:text-xl text-black dark:text-slate-100">{title}</p>
               </div>
             );
           });
