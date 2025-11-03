@@ -1,3 +1,4 @@
+import * as Sentry from '@sentry/nextjs';
 const baseURL = "https://api.the-odds-api.com";
 const apiKey = process.env.NEXT_PUBLIC_API_ODDS_KEY;
 
@@ -56,7 +57,7 @@ export async function getOdds(sport = "upcoming", type = "spreads,totals,h2h") {
       return [];
     }
     const res = await fetch(
-      `${baseURL}/v4/sports/${sport}/odds/?apiKey=${apiKey}&regions=us&markets=${type}&oddsFormat=american`,
+      `${baseURL}/v4/sports/${sport}/oddes/?apiKey=${apiKey}&regions=us&markets=${type}&oddsFormat=american`,
       {
         cache: "no-cache",
       }
@@ -64,6 +65,7 @@ export async function getOdds(sport = "upcoming", type = "spreads,totals,h2h") {
     const data: Odds[] = await res.json();
     return data;
   } catch (error) {
+    Sentry.captureException(error, { tags: { sport, function: "getOdds", from: 'server' } });
     console.error(error);
     return [];
   }
@@ -84,6 +86,7 @@ export async function getInSeasonSports() {
     const data = await res.json();
     return Array.isArray(data) && data.length ? data : fallbackSports;
   } catch (error) {
+    Sentry.captureException(error, { tags: { sport: "all", function: "getInSeasonSports", from: 'server' } });
     console.error(error);
     return fallbackSports;
   }
@@ -97,6 +100,7 @@ export async function getMoneyLineOdds(sport = "upcoming") {
     }
     return [];
   } catch (error) {
+    Sentry.captureException(error, { tags: { sport, function: "getMoneyLineOdds", from: 'server' } });
     console.error(error);
     return [];
   }
@@ -109,7 +113,8 @@ export async function getSpreadOdds(sport = "upcoming") {
       return odds;
     }
     return [];
-  } catch (error) {
+  } catch (error) { 
+    Sentry.captureException(error, { tags: { sport, function: "getSpreadOdds", from: 'server' } });
     console.error(error);
     return [];
   }
@@ -123,6 +128,7 @@ export async function getPointOdds(sport = "upcoming") {
     }
     return [];
   } catch (error) {
+    Sentry.captureException(error, { tags: { sport, function: "getPointOdds", from: 'server' } });
     console.error(error);
     return [];
   }
@@ -152,8 +158,8 @@ export async function getPlayerProps(
     }
     return [];
   } catch (error) {
+    Sentry.captureException(error, { tags: { sport, eventid, markets, function: "getPlayerProps", from: 'server' } });
     console.error(error);
-    const { dummyPlayerProps } = await import("./dummyPlayerProps");
-    return dummyPlayerProps;
+    return [];
   }
 }
