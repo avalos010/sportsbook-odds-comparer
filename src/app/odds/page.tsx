@@ -4,6 +4,8 @@ import OddsTable from "@/components/OddsTable";
 import MoneyLine from "@/components/Moneyline";
 import Snackbar from "@/components/Snackbar";
 
+export const dynamic = 'force-dynamic';
+
 async function Odds() {
   const odds = await getMoneyLineOdds();
 

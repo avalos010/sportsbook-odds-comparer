@@ -3,6 +3,8 @@ import OddsContainer from "@/components/OddsContainer";
 import OddsTable from "@/components/OddsTable";
 import Spread from "@/components/Spread";
 
+export const dynamic = 'force-dynamic';
+
 const Page = async ({ params }: { params: Promise<{ sport: string }> }) => {
   const resolvedParams = await params;
   const sport = resolvedParams?.sport;

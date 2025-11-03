@@ -57,7 +57,7 @@ export async function getOdds(sport = "upcoming", type = "spreads,totals,h2h") {
       return [];
     }
     const res = await fetch(
-      `${baseURL}/v4/sports/${sport}/oddes/?apiKey=${apiKey}&regions=us&markets=${type}&oddsFormat=american`,
+      `${baseURL}/v4/sports/${sport}/odds/?apiKey=${apiKey}&regions=us&markets=${type}&oddsFormat=american`,
       {
         cache: "no-cache",
       }
