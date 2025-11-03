@@ -4,7 +4,8 @@ import ComboBoxClient from "./ComboBoxClient";
 import { getPlayerProps } from "../../../../lib/api";
 
 const playerProps = async ({ searchParams }: PlayerPropsParams) => {
-  const sport = searchParams.sport;
+  const resolvedSearchParams = await searchParams;
+  const sport = resolvedSearchParams.sport;
 
   const league = sport?.split("_")[1];
   const supportedMarkets = markets[league as keyof typeof markets];
@@ -38,10 +39,10 @@ const playerProps = async ({ searchParams }: PlayerPropsParams) => {
 export default playerProps;
 
 interface PlayerPropsParams {
-  searchParams: {
-    sport: string;
-    event: string;
-    markets: string;
-    marketLabel: string;
-  };
+  searchParams: Promise<{
+    sport?: string;
+    event?: string;
+    markets?: string;
+    marketLabel?: string;
+  }>;
 }

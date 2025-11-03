@@ -54,7 +54,7 @@ export function ComboBox({ list, onSelect }: ComboBoxProps) {
             : "Select item..."}
         </Button>
       </PopoverTrigger>
-      <PopoverContent className="w-screen max-w-xs sm:w-[240px] p-0">
+      <PopoverContent className="w-screen max-w-xs sm:w-[240px] p-0 z-[9999] bg-white dark:bg-[hsl(240_10%_6%)]">
         <Command>
           {/* <CommandInput placeholder="Search framework..." /> */}
           <CommandList>
@@ -64,6 +64,7 @@ export function ComboBox({ list, onSelect }: ComboBoxProps) {
                 <CommandItem
                   key={item.value}
                   value={item.value}
+                  className="cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
                   onSelect={(currentValue) => {
                     setValue(currentValue === value ? "" : currentValue);
                     setOpen(false);
