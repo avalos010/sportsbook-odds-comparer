@@ -13,7 +13,7 @@ export default function BarLineBanner({ className, link }: BarLineBannerProps) {
       relative overflow-hidden rounded-xl bg-linear-to-r 
       from-slate-900 via-slate-800 to-slate-900 
       p-6 text-white border-l-4 border-red-500
-      shadow-lg w-85/100 mx-auto my-6
+      shadow-lg w-85/100 mx-auto my-6 sm:text-base
       ${className}
     `}
     >
@@ -45,7 +45,7 @@ export default function BarLineBanner({ className, link }: BarLineBannerProps) {
       {/* Mobile-only link */}
       <a
         href={link}
-        className="sm:hidden mt-4 w-full bg-gray-500 hover:bg-cyan-600 transition-colors py-2 rounded text-center text-sm font-medium"
+        className="sm:hidden mt-4  bg-gray-500 hover:bg-cyan-600 transition-colors py-2 rounded text-center text-sm font-medium flex justify-center"
       >
         Visit
       </a>
