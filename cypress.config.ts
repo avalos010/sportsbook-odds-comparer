@@ -13,6 +13,7 @@ const resolvedBaseUrl =
   (!isCI ? "http://localhost:3000" : undefined);
 
 export default defineConfig({
+  allowCypressEnv: false,
   e2e: {
     baseUrl: resolvedBaseUrl,
     retries: {

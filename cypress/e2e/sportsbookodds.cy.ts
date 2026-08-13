@@ -184,6 +184,18 @@ describe("BarLine game links", () => {
   });
 });
 
+describe("Sports API", () => {
+  it("rejects unsupported methods without leaving the request open", () => {
+    cy.request({
+      method: "POST",
+      url: "/api/sports",
+      failOnStatusCode: false,
+    })
+      .its("status")
+      .should("equal", 405);
+  });
+});
+
 describe("Saved interface preferences", () => {
   it("remembers when the BarLine promotion is dismissed", () => {
     visitApp();

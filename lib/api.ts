@@ -144,7 +144,7 @@ export async function getPlayerProps(
   "use server";
   try {
     if (!apiKey) {
-      const { dummyPlayerProps } = await import("./dummyPlayerProps.js");
+      const { dummyPlayerProps } = await import("./dummyPlayerProps.ts");
       return dummyPlayerProps;
     }
     const odds = await fetch(
