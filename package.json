@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "test": "npx cypress run --spec cypress/e2e/sportsbookodds.cy.ts",
+    "test": "env -u ELECTRON_RUN_AS_NODE cypress run --spec cypress/e2e/sportsbookodds.cy.ts",
     "cypress:open": "cypress open",
     "cypress:run": "cypress run"
   },

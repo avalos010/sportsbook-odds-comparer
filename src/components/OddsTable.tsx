@@ -1,25 +1,16 @@
 "use client";
-import { ReactNode, useEffect, useState } from "react";
+import type { ReactNode } from "react";
 import type { Odds } from "../../lib/api";
-import Link from "next/link";
+import { getBarLineGameUrl } from "../../lib/barLine";
 import GameHeader from "./GameHeader";
 
-const supportedPlayerPropsLeagues = ["nba", "nfl", "nhl", "mlb"];
-
 function OddsTable({ oddsItem, home, away, points, draw }: OddsTableProps) {
-  const { away_team, bookmakers, home_team, sport_key } = oddsItem;
-
-  const [supportsPlayerProps, setSupportsPlayerProps] = useState(false);
-
-  useEffect(() => {
-    supportedPlayerPropsLeagues.forEach((league) => {
-      if (sport_key.includes(league)) {
-        setSupportsPlayerProps(true);
-      }
-    });
-  }, [sport_key]);
-
-  //find out if player props are supported for this sport using oddsItem.sport_key and compare it to see if any substring from supportedPlayerPropsLeagues
+  const { away_team, home_team, sport_key } = oddsItem;
+  const playerPropsUrl = getBarLineGameUrl(
+    sport_key,
+    home_team,
+    away_team
+  );
 
   if (!points) {
     return (
@@ -30,15 +21,15 @@ function OddsTable({ oddsItem, home, away, points, draw }: OddsTableProps) {
             awayTeam={away_team}
             commenceTime={oddsItem.commence_time}
           />
-          {supportsPlayerProps && (
+          {playerPropsUrl && (
             <div className="flex justify-center mt-3">
-              <Link
+              <a
                 data-cy="player-props-link"
-                href={`/odds/playerProps/?sport=${oddsItem.sport_key}&event=${oddsItem.id}`}
+                href={playerPropsUrl}
                 className="bg-cyan-600 hover:bg-cyan-700 text-white font-medium py-1.5 px-3 rounded-md shadow-sm hover:shadow-md transition-all duration-200 text-xs sm:text-sm"
               >
                 Player Props
-              </Link>
+              </a>
             </div>
           )}
         </div>
