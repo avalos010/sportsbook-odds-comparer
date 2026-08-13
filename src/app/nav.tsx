@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import { Sport } from "../../lib/api";
+import type { Sport } from "../../lib/api";
 import { useState } from "react";
 import Snackbar from "../components/Snackbar";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/solid";

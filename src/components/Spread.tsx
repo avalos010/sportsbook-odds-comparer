@@ -1,5 +1,5 @@
 "use client";
-import { Bookmaker, Market, Odds, Outcome } from "../../lib/api";
+import type { Bookmaker, Market, Odds, Outcome } from "../../lib/api";
 import { findBestOdds, isBestSpreadOdds } from "../../lib/utils";
 import { StarFilledIcon } from "@radix-ui/react-icons";
 

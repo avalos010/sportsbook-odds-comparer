@@ -1,6 +1,6 @@
 "use client";
 import { ReactNode, useEffect, useState } from "react";
-import { Odds } from "../../lib/api";
+import type { Odds } from "../../lib/api";
 import Link from "next/link";
 import GameHeader from "./GameHeader";
 

@@ -32,26 +32,28 @@ function OddsMenu() {
   return (
     <nav
       aria-label="Odds views"
-      className="flex flex-row justify-center gap-3 sm:gap-5 text-base sm:text-lg"
+      className="mb-4 flex justify-center"
     >
-      {routes.map(({ name, label }) => {
-        const isActive = pathname?.includes(name);
-        return (
-          <Link
-            key={name}
-            data-cy={`odds-${name}-link`}
-            className={`${
-              isActive
-                ? "text-cyan-900 font-bold underline underline-offset-1"
-                : "text-cyan-700"
-            } px-3 py-1 rounded-md`}
-            href={`${url}/${name}`}
-            aria-current={isActive ? "page" : undefined}
-          >
-            {label}
-          </Link>
-        );
-      })}
+      <div className="flex gap-1 rounded-md border border-slate-200 bg-white p-1 dark:border-slate-800 dark:bg-slate-950">
+        {routes.map(({ name, label }) => {
+          const isActive = pathname?.includes(name);
+          return (
+            <Link
+              key={name}
+              data-cy={`odds-${name}-link`}
+              className={`rounded px-3 py-1.5 text-xs font-medium transition-colors ${
+                isActive
+                  ? "bg-slate-900 text-white dark:bg-slate-100 dark:text-slate-950"
+                  : "text-slate-600 hover:bg-slate-50 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-slate-900 dark:hover:text-slate-100"
+              }`}
+              href={`${url}/${name}`}
+              aria-current={isActive ? "page" : undefined}
+            >
+              {label}
+            </Link>
+          );
+        })}
+      </div>
     </nav>
   );
 }

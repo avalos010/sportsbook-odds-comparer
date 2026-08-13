@@ -1,4 +1,4 @@
-import { Bookmaker, Market, Outcome } from "../lib/api";
+import type { Bookmaker, Market, Outcome } from "../lib/api";
 
 interface BestOdds {
   moneyline: { price: number; bookmaker: string } | null;

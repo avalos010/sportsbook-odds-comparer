@@ -1,6 +1,6 @@
 import * as Sentry from '@sentry/nextjs';
 const baseURL = "https://api.the-odds-api.com";
-const apiKey = process.env.NEXT_PUBLIC_API_ODDS_KEY;
+const apiKey = process.env.API_ODDS_KEY;
 
 export interface Outcome {
   name: string;
@@ -144,7 +144,7 @@ export async function getPlayerProps(
   "use server";
   try {
     if (!apiKey) {
-      const { dummyPlayerProps } = await import("./dummyPlayerProps");
+      const { dummyPlayerProps } = await import("./dummyPlayerProps.js");
       return dummyPlayerProps;
     }
     const odds = await fetch(
