@@ -45,6 +45,8 @@ const fallbackSports: Sport[] = [
   { key: "basketball_nba", group: "Basketball", title: "NBA", description: "NBA", active: true, has_outrights: false },
   { key: "baseball_mlb", group: "Baseball", title: "MLB", description: "MLB", active: true, has_outrights: false },
   { key: "icehockey_nhl", group: "Hockey", title: "NHL", description: "NHL", active: true, has_outrights: false },
+  { key: "tennis_atp", group: "Tennis", title: "ATP", description: "ATP", active: true, has_outrights: false },
+  { key: "tennis_wta", group: "Tennis", title: "WTA", description: "WTA", active: true, has_outrights: false },
 ];
 
 function isCiEnv() {
